@@ -1,0 +1,38 @@
+.input-block {
+  display: flex;
+  flex-direction: column;
+}
+
+.input-block__input {
+  font-size: 0.875rem;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  line-height: 1.6875rem;
+  background-color: #36404a;
+  border: 0.0625rem solid #36404a;
+  border-radius: 0.4rem;
+  padding: 0.5rem 1rem;
+  color: #a6b0cf;
+  transition: all 0.35s linear;
+}
+
+.input-block__input_type_error {
+  border-color: #ff0000;
+  color: #ff0000;
+}
+
+.input-block__error {
+  color: #ff0000;
+  font-size: 0.75rem;
+  margin: 0.3125rem 0;
+  min-height: 1.875rem;
+}
+
+.input-block__input::placeholder {
+  color: #a6b0cf;
+}
+
+.input-block__input_type_error::placeholder {
+  color: #ff0000;
+}
