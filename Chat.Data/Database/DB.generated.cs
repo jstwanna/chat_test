@@ -22,8 +22,6 @@ namespace Chat.Data.Database
 	/// </summary>
 	public partial class DBContext : LinqToDB.Data.DataConnection
 	{
-		public ITable<User> Users { get { return this.GetTable<User>(); } }
-
 		partial void InitMappingSchema()
 		{
 		}
@@ -57,11 +55,5 @@ namespace Chat.Data.Database
 
 		partial void InitDataContext  ();
 		partial void InitMappingSchema();
-	}
-
-	[Table(Schema="public", Name="users")]
-	public partial class User
-	{
-		[Column("id"), Identity] public int Id { get; set; } // integer
 	}
 }

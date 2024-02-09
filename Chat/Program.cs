@@ -10,6 +10,8 @@ ConfigureServices(builder);
 
 var app = builder.Build();
 
+app.Services.GetRequiredService<DBMigrations>().Apply();
+
 if (app.Environment.IsDevelopment())
 {
     app.UseOpenApi();
@@ -31,9 +33,18 @@ app.Run();
 
 static void ConfigureServices (IHostApplicationBuilder builder)
 {
+    var connStr = builder.Configuration.GetConnectionString("Default")!;
+    var dbOptions = new DBOptions
+    {
+        connStr = connStr,
+    };
+
+    builder.Services.AddSingleton(dbOptions);
+    builder.Services.AddTransient<DBMigrations>();
+
     builder.Services.AddLinqToDBContext<DBContext>((provider, options) =>
         options
-            .UsePostgreSQL(builder.Configuration.GetConnectionString("Default")!)
+            .UsePostgreSQL(connStr)
             .UseDefaultLogging(provider));
 
     builder.Services.AddControllers();

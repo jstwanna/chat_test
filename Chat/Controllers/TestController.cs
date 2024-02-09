@@ -9,7 +9,7 @@ namespace Chat.Controllers
     {
         public string Test ([FromServices] DBContext dBContext, string test)
         {
-            var ttt = dBContext.Users.ToArray();
+            //var ttt = dBContext;
 
             return test;
         }
