@@ -1,12 +1,17 @@
 using Chat.Data.Database;
+using Chat.Data.Models.Account;
 using Chat.Hubs;
 using LinqToDB;
 using LinqToDB.AspNet;
 using LinqToDB.AspNet.Logging;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
+string devAllowCors = "dev_cors";
 var builder = WebApplication.CreateBuilder(args);
 
-ConfigureServices(builder);
+ConfigureServices(builder, devAllowCors);
 
 var app = builder.Build();
 
@@ -16,13 +21,14 @@ if (app.Environment.IsDevelopment())
 {
     app.UseOpenApi();
     app.UseSwaggerUI();
+    app.UseCors(devAllowCors);
 }
 
-
-app.UseCors("cors");
 app.UseHttpsRedirection();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 app.UseStaticFiles();
 
 app.ConfigureHubs();
@@ -31,7 +37,7 @@ app.MapControllers();
 app.Run();
 
 
-static void ConfigureServices (IHostApplicationBuilder builder)
+static void ConfigureServices (IHostApplicationBuilder builder, string devCors)
 {
     var connStr = builder.Configuration.GetConnectionString("Default")!;
     var dbOptions = new DBOptions
@@ -55,11 +61,31 @@ static void ConfigureServices (IHostApplicationBuilder builder)
     builder.Services.AddCors(option =>
     {
         option.AddPolicy(
-            "cors",
+            devCors,
             p =>
             p
             .AllowAnyHeader()
             .AllowAnyMethod()
             .AllowAnyOrigin());
     });
+    builder.Services.AddAuthentication(options =>
+    {
+        options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+        options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+    }).AddJwtBearer(o =>
+    {
+        o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        {
+            ValidIssuer = builder.Configuration["Jwt:Issuer"],
+            ValidAudience = builder.Configuration["Jwt:Audience"],
+            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]!)),
+            ValidateIssuer = true,
+            ValidateAudience = true,
+            ValidateLifetime = true,
+            ValidateIssuerSigningKey = true
+        };
+    });
+    builder.Services.AddAuthorization();
+    builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
 }

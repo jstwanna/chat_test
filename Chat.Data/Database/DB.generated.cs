@@ -8,6 +8,7 @@
 #pragma warning disable 1573, 1591
 
 using System;
+using System.Linq;
 
 using LinqToDB;
 using LinqToDB.Configuration;
@@ -22,6 +23,9 @@ namespace Chat.Data.Database
 	/// </summary>
 	public partial class DBContext : LinqToDB.Data.DataConnection
 	{
+		public ITable<Migration> Migrations { get { return this.GetTable<Migration>(); } }
+		public ITable<Test>      Tests      { get { return this.GetTable<Test>(); } }
+
 		partial void InitMappingSchema()
 		{
 		}
@@ -55,5 +59,28 @@ namespace Chat.Data.Database
 
 		partial void InitDataContext  ();
 		partial void InitMappingSchema();
+	}
+
+	[Table(Schema="public", Name="migrations")]
+	public partial class Migration
+	{
+		[Column("schemaversionsid"), PrimaryKey, Identity] public int      Schemaversionsid { get; set; } // integer
+		[Column("scriptname"),       NotNull             ] public string   Scriptname       { get; set; } // character varying(255)
+		[Column("applied"),          NotNull             ] public DateTime Applied          { get; set; } // timestamp (6) without time zone
+	}
+
+	[Table(Schema="public", Name="test")]
+	public partial class Test
+	{
+		[Column("id"), Identity] public int Id { get; set; } // integer
+	}
+
+	public static partial class TableExtensions
+	{
+		public static Migration Find(this ITable<Migration> table, int Schemaversionsid)
+		{
+			return table.FirstOrDefault(t =>
+				t.Schemaversionsid == Schemaversionsid);
+		}
 	}
 }
