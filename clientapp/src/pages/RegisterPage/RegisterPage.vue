@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import './RegisterPage.css';
 
-import { useFormAndValidation } from '../../validators/useFormAndValidation';
+import { useFormAndValidation } from '../../composables/useFormAndValidation';
 
 import Auth from '../../components/Auth/Auth.vue';
 import MyInput from '../../components/UI/MyInput/MyInput.vue';
 
 const { values, handleChange, errors, isValid } = useFormAndValidation();
 
-const handleSubmit = () => {
+const handleSubmit = (): void => {
   console.log('register!');
 };
 </script>
@@ -17,6 +17,7 @@ const handleSubmit = () => {
   <Auth
     name="register"
     title="Добро пожаловать!"
+    textButton="Зарегистрироваться"
     text="Уже зарегистрированы?"
     to="sign-in"
     textLink="Войти"
@@ -47,3 +48,4 @@ const handleSubmit = () => {
     </template>
   </Auth>
 </template>
+../../composables/useFormAndValidation

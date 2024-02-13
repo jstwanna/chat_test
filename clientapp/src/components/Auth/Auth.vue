@@ -6,6 +6,7 @@ import MyButton from '../UI/MyButton/MyButton.vue';
 
 interface AuthProps {
   title: string;
+  textButton: string;
   name: string;
   disabled: boolean;
   text: string;
@@ -23,11 +24,11 @@ const { title, name, disabled, onSubmit, text, to, textLink } = toRefs(props);
     <img :src="logo" alt="Лого" class="auth__logo" />
     <h1 class="auth__title">{{ title }}</h1>
     <form :name="name" novalidate @submit.prevent="onSubmit" class="auth__form">
-      <slot name="form"></slot>
+      <slot name="form" />
       <MyButton
         type="submit"
-        textButton="Войти"
         :disabled="!disabled"
+        :textButton="textButton"
         class="auth__button"
       />
     </form>

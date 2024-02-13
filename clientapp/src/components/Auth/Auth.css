@@ -15,7 +15,7 @@
 }
 
 .auth__title {
-  color: #fff;
+  color: hsl(218, 33%, 95%);
   font-size: 1.5rem;
   font-weight: 700;
   margin: 2.5rem 0;
@@ -30,22 +30,22 @@
 
 .auth__button {
   margin-top: 11.3125rem;
-  background-color: #7269ef;
-  color: #fff;
-  border-radius: 0.1875rem;
-  height: 2.8125rem;
 }
 
 .auth__text {
-  color: #a6b0cf;
+  color: hsl(225, 30%, 73%);
   margin: 0;
   text-align: center;
 }
 
 .auth__link {
-  color: #7269ef;
+  color: hsl(244, 81%, 67%);
   transition: all 0.35s linear;
   text-decoration: none;
+}
+
+.auth__button:hover {
+  opacity: 0.7;
 }
 
 .auth__link:hover {

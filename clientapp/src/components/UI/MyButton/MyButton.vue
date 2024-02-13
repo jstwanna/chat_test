@@ -1,19 +1,19 @@
 <script setup lang="ts">
 import './MyButton.css';
 
+const emit = defineEmits(['click']);
+
 interface ButtonProps {
   type: 'button' | 'submit' | 'reset';
-  textButton: string;
+  textButton?: string;
   disabled?: boolean;
   ariaLabel?: string;
 }
 
 const props = defineProps<ButtonProps>();
-const { type, textButton, disabled, ariaLabel } = toRefs(props);
+const { type, disabled, ariaLabel } = toRefs(props);
 
-const emit = defineEmits(['click']);
-
-const handleClickButton = () => emit('click');
+const handleClickButton = (): void => emit('click');
 </script>
 
 <template>
@@ -25,5 +25,6 @@ const handleClickButton = () => emit('click');
     class="button"
   >
     {{ textButton }}
+    <slot name="icon" />
   </button>
 </template>

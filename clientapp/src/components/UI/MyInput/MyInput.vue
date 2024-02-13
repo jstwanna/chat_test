@@ -1,24 +1,24 @@
 <script setup lang="ts">
 import './MyInput.css';
 
+const emit = defineEmits(['update:modelValue']);
+
 interface InputProps {
   type: string;
-  modelValue?: string;
+  modelValue: string | undefined;
   placeholder: string;
   name: string;
   minLength?: number;
   maxLength?: number;
   handleInput?: (event: Event) => void;
-  error: string | undefined;
+  error?: string | null;
 }
 
 const props = defineProps<InputProps>();
 
-const emit = defineEmits(['update:modelValue']);
-
 const computedValue = computed({
   get: () => props.modelValue,
-  set: (newValue) => emit('update:modelValue', newValue),
+  set: (newValue: string | undefined) => emit('update:modelValue', newValue),
 });
 </script>
 
@@ -41,7 +41,7 @@ const computedValue = computed({
         },
       ]"
     />
-    <p class="input-block__error">
+    <p v-if="props.error !== null" class="input-block__error">
       {{ props.error }}
     </p>
   </div>

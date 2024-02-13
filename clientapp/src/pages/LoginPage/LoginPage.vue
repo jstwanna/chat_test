@@ -1,14 +1,14 @@
 <script setup lang="ts">
 import './LoginPage.css';
 
-import { useFormAndValidation } from '../../validators/useFormAndValidation';
+import { useFormAndValidation } from '../../composables/useFormAndValidation';
 
 import Auth from '../../components/Auth/Auth.vue';
 import MyInput from '../../components/UI/MyInput/MyInput.vue';
 
 const { values, handleChange, errors, isValid } = useFormAndValidation();
 
-const handleSubmit = () => {
+const handleSubmit = (): void => {
   console.log('login');
 };
 </script>
@@ -17,6 +17,7 @@ const handleSubmit = () => {
   <Auth
     name="login"
     title="Рады видеть!"
+    textButton="Войти"
     text="Ещё не зарегистрированы?"
     to="/sign-up"
     textLink="Регистрация"
@@ -47,3 +48,4 @@ const handleSubmit = () => {
     </template>
   </Auth>
 </template>
+../../composables/useFormAndValidation

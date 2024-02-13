@@ -1,0 +1,44 @@
+.chats__text {
+  color: hsl(218, 31%, 95%);
+  padding: 1.5rem 0 1rem;
+  margin: 0 1.5rem;
+}
+
+.chats__list {
+  height: calc(100vh - 11.781rem);
+  box-sizing: border-box;
+  padding: 0 1rem 1rem;
+  margin: 0 0.5rem;
+  list-style: none;
+  overflow-y: auto;
+}
+
+.chats__list::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.chats__list::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.chats__list::-webkit-scrollbar-thumb {
+  background: hsl(218, 33%, 95%);
+  border-radius: 0.3125rem;
+}
+
+.chats__list {
+  scrollbar-width: thin;
+  scrollbar-color: transparent hsl(218, 33%, 95%);
+}
+
+.chats__no-result {
+  margin: 0 1.5rem;
+  color: hsl(225, 30%, 73%);
+}
+
+.chats__empty {
+  margin: 0 1.5rem;
+  padding-top: 1.5rem;
+  color: hsl(218, 31%, 95%);
+  text-align: center;
+}

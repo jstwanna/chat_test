@@ -1,0 +1,35 @@
+.group-preview {
+  display: flex;
+}
+
+.group-preview__title {
+  height: 2.1875rem;
+  min-width: 2.1875rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background-color: hsla(244, 81%, 67%, 0.15);
+  color: hsl(244, 81%, 67%);
+}
+
+.group-preview__content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin-left: 1rem;
+  font-weight: 700;
+}
+
+.group-preview__title-full {
+  font-size: 1rem;
+  margin: 0;
+  color: hsl(218, 33%, 95%);
+}
+
+.group-preview__miss {
+  font-size: 0.75rem;
+  color: hsl(346, 84%, 61%);
+  line-height: normal;
+}

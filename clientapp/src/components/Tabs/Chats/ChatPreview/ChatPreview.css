@@ -1,0 +1,66 @@
+.chat-preview {
+  display: flex;
+}
+
+.chat-preview__image-container {
+  position: relative;
+  margin-right: 1rem;
+}
+
+.chat-preview__image {
+  display: block;
+  object-fit: cover;
+  height: 2.5rem;
+  width: 2.5rem;
+  border-radius: 50%;
+}
+
+.chat-preview__activity {
+  background-color: hsl(164, 95%, 43%);
+  height: 0.625rem;
+  width: 0.625rem;
+  border-radius: 50%;
+  position: absolute;
+  bottom: 0;
+  right: 0.0625rem;
+  border: 0.125rem solid hsl(208, 16%, 18%);
+  box-sizing: border-box;
+}
+
+.chat-preview__info {
+  line-height: 1.25rem;
+  font-size: 0.875rem;
+}
+
+.chat-preview__name {
+  font-weight: 400;
+  margin: 0 0 0.25rem;
+  color: hsl(218, 33%, 95%);
+  font-size: 1rem;
+}
+
+.chat-preview__last-message {
+  max-width: 13.125rem;
+  margin: 0;
+  color: hsl(225, 30%, 73%);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.chat-preview__content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 0.625rem;
+}
+
+.chat-preview__time {
+  color: hsl(225, 30%, 73%);
+  margin: 0;
+}
+
+.chat-preview__miss-message {
+  color: hsl(346, 84%, 61%);
+  margin-top: 0.5rem;
+}

@@ -1,0 +1,17 @@
+.search-box {
+  background-color: hsl(210, 16%, 25%);
+  color: hsl(225, 30%, 73%);
+  border-radius: 0.4rem;
+  display: flex;
+  align-items: center;
+  margin: 1.5rem 1.5rem 0;
+}
+
+.search-box__icon {
+  font-size: 1.125rem;
+  padding: 0rem 1rem;
+}
+
+.search-box__input {
+  width: 100%;
+}

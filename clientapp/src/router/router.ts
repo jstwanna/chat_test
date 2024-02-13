@@ -2,8 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 
 import LoginPage from '../pages/LoginPage/LoginPage.vue';
 import RegisterPage from '../pages/RegisterPage/RegisterPage.vue';
-
-export const isAuthenticated = ref(true);
+import HomePage from '../pages/HomePage/HomePage.vue';
 
 const routes = [
   {
@@ -15,6 +14,11 @@ const routes = [
     name: 'Register',
     path: '/sign-up',
     component: RegisterPage,
+  },
+  {
+    name: 'Home',
+    path: '/',
+    component: HomePage,
   },
 ];
 

@@ -7,11 +7,11 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    App: typeof import('./src/components/App/App.vue')['default']
-    Auth: typeof import('./src/components/Auth/Auth.vue')['default']
-    MyButton: typeof import('./src/components/UI/MyButton/MyButton.vue')['default']
-    MyInput: typeof import('./src/components/UI/MyInput/MyInput.vue')['default']
+    GroupPreview: typeof import('./src/components/Tabs/Groups/GroupPreview/GroupPreview.vue')['default']
+    MyPopup: typeof import('./src/components/UI/MyPopup/MyPopup.vue')['default']
+    Preview: typeof import('./src/components/Tabs/Preview/Preview.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    SearchBox: typeof import('./src/components/Tabs/SearchBox/SearchBox.vue')['default']
   }
 }
