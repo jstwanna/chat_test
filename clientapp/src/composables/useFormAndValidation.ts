@@ -1,6 +1,4 @@
-interface FormFields {
-  [key: string]: string;
-}
+type FormFields = Record<string, string>;
 
 interface FormAndValidation {
   values: FormFields;

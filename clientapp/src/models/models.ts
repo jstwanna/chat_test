@@ -19,3 +19,8 @@ export interface Group {
   title: string;
   description: string;
 }
+
+export interface ContactByLetter {
+  letter: string;
+  contactItems: { name: string }[];
+}
