@@ -9,9 +9,9 @@ export const profileInfo = ref([
     title: 'Email',
     text: 'denis04la@rambler.ru',
   },
-  {
-    id: 3,
-    title: 'Местоположение',
-    text: 'Россия, Москва',
-  },
+  // {
+  //   id: 3,
+  //   title: 'Местоположение',
+  //   text: 'Россия, Москва',
+  // },
 ]);

@@ -5,13 +5,16 @@ import MyInput from '../../UI/MyInput/MyInput.vue';
 
 const emit = defineEmits(['update:modelValue']);
 
-interface SearchBoxProps {
-  modelValue: string;
-  placeholder: string;
-}
-
-const props = defineProps<SearchBoxProps>();
-const { placeholder } = toRefs(props);
+const props = defineProps({
+  modelValue: {
+    type: String,
+    required: true,
+  },
+  placeholder: {
+    type: String,
+    required: true,
+  },
+});
 
 const computedValue = computed({
   get: () => props.modelValue,

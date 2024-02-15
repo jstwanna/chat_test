@@ -8,17 +8,23 @@ import { Tab } from '../../models/models';
 
 import MyButton from '../UI/MyButton/MyButton.vue';
 
-interface NavigationProps {
-  links: Tab[];
-  onSwitch: Function;
-  tabTitle: string;
-}
-
-const props = defineProps<NavigationProps>();
-const { links, onSwitch } = toRefs(props);
+const props = defineProps({
+  links: {
+    type: Object as PropType<Tab[]>,
+    required: true,
+  },
+  onSwitch: {
+    type: Function,
+    required: true,
+  },
+  tabTitle: {
+    type: String,
+    required: true,
+  },
+});
 
 const handleSwitchComponent = (tabTitle: string, component: Component) => {
-  onSwitch.value(tabTitle, component);
+  props.onSwitch(tabTitle, component);
 };
 </script>
 
@@ -47,4 +53,3 @@ const handleSwitchComponent = (tabTitle: string, component: Component) => {
     <img :src="avatar" alt="Фото аватара" class="navigation__image-profile" />
   </section>
 </template>
-../../models/models

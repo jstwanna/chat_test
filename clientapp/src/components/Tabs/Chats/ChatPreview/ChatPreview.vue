@@ -4,12 +4,12 @@ import './ChatPreview.css';
 import { Chat } from '../../../../models/models';
 import Preview from '../../Preview/Preview.vue';
 
-interface ChatPreviewProps {
-  chats: Chat;
-}
-
-const props = defineProps<ChatPreviewProps>();
-const { chats } = toRefs(props);
+defineProps({
+  chats: {
+    type: Object as PropType<Chat>,
+    required: true,
+  },
+});
 </script>
 
 <template>
@@ -36,4 +36,3 @@ const { chats } = toRefs(props);
     </template>
   </Preview>
 </template>
-../../../../models/models

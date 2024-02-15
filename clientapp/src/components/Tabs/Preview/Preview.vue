@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import './Preview.css';
 
-interface PreviewProps {
-  to: string;
-}
-
-const props = defineProps<PreviewProps>();
-const { to } = toRefs(props);
+defineProps({
+  to: {
+    type: String,
+    required: true,
+  },
+});
 </script>
 
 <template>

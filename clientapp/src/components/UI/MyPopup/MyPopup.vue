@@ -5,13 +5,16 @@ import MyButton from '../MyButton/MyButton.vue';
 
 const emit = defineEmits(['closePopup', 'update:modelValue']);
 
-interface PopupProps {
-  modelValue: boolean;
-  title: string;
-}
-
-const props = defineProps<PopupProps>();
-const { modelValue, title } = toRefs(props);
+const props = defineProps({
+  modelValue: {
+    type: Boolean,
+    required: true,
+  },
+  title: {
+    type: String,
+    required: true,
+  },
+});
 
 const popup = ref<HTMLElement | null>(null);
 
@@ -30,7 +33,7 @@ const handleCloseByOverlay = (event: MouseEvent): void => {
 };
 
 const modelUpdate = computed({
-  get: () => modelValue.value,
+  get: () => props.modelValue,
   set: (newValue) => emit('update:modelValue', newValue),
 });
 

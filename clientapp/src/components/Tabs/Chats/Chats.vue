@@ -50,4 +50,3 @@ const { isNotEmpty, filteredArray, isFilteredArrayNotEmpty } = useFilteredArray<
     </p>
   </div>
 </template>
-../../../models/models ../../../composables/useFilteredArray

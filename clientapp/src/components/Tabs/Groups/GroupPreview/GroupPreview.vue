@@ -4,12 +4,12 @@ import './GroupPreview.css';
 import { Group } from '../../../../models/models';
 import Preview from '../../Preview/Preview.vue';
 
-interface GroupPreviewProps {
-  groups: Group;
-}
-
-const props = defineProps<GroupPreviewProps>();
-const { groups } = toRefs(props);
+defineProps({
+  groups: {
+    type: Object as PropType<Group>,
+    required: true,
+  },
+});
 </script>
 
 <template>
@@ -25,4 +25,3 @@ const { groups } = toRefs(props);
     </template>
   </Preview>
 </template>
-../../../../models/models

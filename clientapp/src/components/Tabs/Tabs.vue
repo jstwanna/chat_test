@@ -1,13 +1,16 @@
 <script setup lang="ts">
 import './Tabs.css';
 
-interface TabsProps {
-  currentComponent: Component;
-  currentTitle: string;
-}
-
-const props = defineProps<TabsProps>();
-const { currentComponent, currentTitle } = toRefs(props);
+defineProps({
+  currentComponent: {
+    type: Object as PropType<Component>,
+    required: true,
+  },
+  currentTitle: {
+    type: String,
+    required: true,
+  },
+});
 </script>
 
 <template>
