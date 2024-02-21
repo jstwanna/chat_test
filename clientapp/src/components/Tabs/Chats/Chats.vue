@@ -4,9 +4,12 @@ import avatar from '../../../images/avatar-1.jpg';
 
 import { Chat } from '../../../models/models';
 import { useFilteredArray } from '../../../composables/useFilteredArray';
+import { createTypeChecker } from '../../../utils/utils';
 
 import ChatPreview from '../Chats/ChatPreview/ChatPreview.vue';
-import SearchBox from '../SearchBox/SearchBox.vue';
+import FilteredList from '../FilteredList/FilteredList.vue';
+
+const isChat = createTypeChecker<Chat>(['avatar', 'name', 'time', 'to']);
 
 const searchQuery = ref<string>('');
 
@@ -35,18 +38,19 @@ const { isNotEmpty, filteredArray, isFilteredArrayNotEmpty } = useFilteredArray<
 
 <template>
   <div class="chats">
-    <SearchBox v-model="searchQuery" placeholder="Поиск чата или сообщения" />
-    <div class="" v-if="isNotEmpty">
-      <p class="chats__text">Недавние</p>
-      <ul class="chats__list" v-if="isFilteredArrayNotEmpty">
-        <li v-for="item in filteredArray" :key="item.id">
-          <ChatPreview :chats="item" />
-        </li>
-      </ul>
-      <p class="chats__no-result" v-else>Ничего не найдено :(</p>
-    </div>
-    <p class="chats__empty" v-else>
-      Пока нет чатов и сообщений. Начните новый разговор прямо сейчас!
-    </p>
+    <FilteredList
+      v-model="searchQuery"
+      placeholder="Поиск чата или сообщения"
+      :isChat="true"
+      :isNotEmpty="isNotEmpty"
+      emptyText="Пока нет чатов и сообщений. Начните новый разговор прямо сейчас!"
+      :filteredArray="filteredArray"
+      :isFilteredArray="isFilteredArrayNotEmpty"
+      customClass="chats__list"
+    >
+      <template #list-item="{ item }">
+        <ChatPreview v-if="isChat(item)" :chats="item" />
+      </template>
+    </FilteredList>
   </div>
 </template>

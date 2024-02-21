@@ -1,15 +1,19 @@
 <script setup lang="ts">
 import './Groups.css';
+import '../../../directives/TooltipDirective/TooltipDirective.css';
 
 import { useFormAndValidation } from '../../../composables/useFormAndValidation';
 import { useFilteredArray } from '../../../composables/useFilteredArray';
 import { Group } from '../../../models/models';
+import { createTypeChecker } from '../../../utils/utils';
 
-import SearchBox from '../SearchBox/SearchBox.vue';
 import MyButton from '../../UI/MyButton/MyButton.vue';
 import MyPopup from '../../UI/MyPopup/MyPopup.vue';
 import MyInput from '../../UI/MyInput/MyInput.vue';
 import GroupPreview from './GroupPreview/GroupPreview.vue';
+import FilteredList from '../FilteredList/FilteredList.vue';
+
+const isGroup = createTypeChecker<Group>(['title', 'to', 'description']);
 
 const { values, handleChange, errors, isValid, resetForm } =
   useFormAndValidation();
@@ -55,27 +59,32 @@ watch(isPopup, () => {
 
 <template>
   <div class="groups">
-    <MyButton
-      type="button"
-      class="groups__icon"
-      ariaLabel="Поиск группы"
-      v-tooltip="{ text: 'Создать группу', position: 'bottom' }"
-      @click="togglePopup"
+    <FilteredList
+      v-model="searchGroup"
+      placeholder="Поиск групп..."
+      :isNotEmpty="isNotEmpty"
+      emptyText="Пока нету ни одной группы"
+      :filteredArray="filteredArray"
+      :isFilteredArray="isFilteredArrayNotEmpty"
+      customClass="groups__list"
     >
-      <template #icon>
-        <font-awesome-icon icon="fa-solid fa-user-group" />
+      <template #header>
+        <MyButton
+          type="button"
+          class="groups__icon"
+          ariaLabel="Поиск группы"
+          v-tooltip="{ text: 'Создать группу', position: 'bottom' }"
+          @click="togglePopup"
+        >
+          <template #icon>
+            <font-awesome-icon icon="fa-solid fa-user-group" />
+          </template>
+        </MyButton>
       </template>
-    </MyButton>
-    <SearchBox v-model="searchGroup" placeholder="Поиск групп..." />
-    <div v-if="isNotEmpty">
-      <ul class="groups__list" v-if="isFilteredArrayNotEmpty">
-        <li v-for="group in filteredArray" :key="group.id">
-          <GroupPreview :groups="group" />
-        </li>
-      </ul>
-      <p class="groups__no-result" v-else>Ничего не найдено :(</p>
-    </div>
-    <p v-else class="groups__empty">Пока нету ни одной группы</p>
+      <template #list-item="{ item }">
+        <GroupPreview v-if="isGroup(item)" :groups="item" />
+      </template>
+    </FilteredList>
   </div>
 
   <MyPopup

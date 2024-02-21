@@ -40,7 +40,7 @@
 }
 
 .chat-preview__last-message {
-  max-width: 13.125rem;
+  max-width: 12.5rem;
   margin: 0;
   color: hsl(225, 30%, 73%);
   overflow: hidden;
@@ -53,6 +53,7 @@
   flex-direction: column;
   align-items: center;
   font-size: 0.625rem;
+  width: 100%;
 }
 
 .chat-preview__time {

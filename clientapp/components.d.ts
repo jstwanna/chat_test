@@ -8,11 +8,11 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     ContactBlock: typeof import('./src/components/Tabs/Contacts/ContactBlock/ContactBlock.vue')['default']
+    FilteredList: typeof import('./src/components/Tabs/FilteredList/FilteredList.vue')['default']
     GroupPreview: typeof import('./src/components/Tabs/Groups/GroupPreview/GroupPreview.vue')['default']
     MyPopup: typeof import('./src/components/UI/MyPopup/MyPopup.vue')['default']
     Preview: typeof import('./src/components/Tabs/Preview/Preview.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SearchBox: typeof import('./src/components/Tabs/SearchBox/SearchBox.vue')['default']
   }
 }

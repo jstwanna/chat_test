@@ -19,3 +19,8 @@ export interface Group {
   title: string;
   description: string;
 }
+
+export interface Contact {
+  id: number;
+  name: string;
+}

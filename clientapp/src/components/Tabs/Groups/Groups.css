@@ -1,6 +1,6 @@
 .groups__icon {
   position: absolute;
-  top: 2rem;
+  top: 1.35rem;
   right: 1.5rem;
   font-size: 1.125rem;
   color: hsl(225, 30%, 73%);
@@ -23,13 +23,5 @@
 }
 
 .groups__list {
-  padding: 1.5rem;
-  margin: 0;
-  list-style: none;
-}
-
-.groups__no-result,
-.groups__empty {
-  margin: 1.5rem 1.5rem 0;
-  color: hsl(218, 31%, 95%);
+  height: calc(100vh - 9.2805rem);
 }
