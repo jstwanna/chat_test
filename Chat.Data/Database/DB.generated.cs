@@ -24,7 +24,9 @@ namespace Chat.Data.Database
 	public partial class DBContext : LinqToDB.Data.DataConnection
 	{
 		public ITable<Migration> Migrations { get { return this.GetTable<Migration>(); } }
+		public ITable<Role>      Roles      { get { return this.GetTable<Role>(); } }
 		public ITable<Test>      Tests      { get { return this.GetTable<Test>(); } }
+		public ITable<User>      Users      { get { return this.GetTable<User>(); } }
 
 		partial void InitMappingSchema()
 		{
@@ -69,10 +71,53 @@ namespace Chat.Data.Database
 		[Column("applied"),          NotNull             ] public DateTime Applied          { get; set; } // timestamp (6) without time zone
 	}
 
+	[Table(Schema="public", Name="roles")]
+	public partial class Role
+	{
+		[Column("id"),         PrimaryKey, Identity] public int    Id         { get; set; } // integer
+		[Column("name"),       NotNull             ] public string Name       { get; set; } // text
+		[Column("constraint"), NotNull             ] public string Constraint { get; set; } // text
+
+		#region Associations
+
+		/// <summary>
+		/// user_role_fk_BackReference (public.users)
+		/// </summary>
+		[Association(ThisKey="Id", OtherKey="Id", CanBeNull=true)]
+		public User Userrolefk { get; set; }
+
+		#endregion
+	}
+
 	[Table(Schema="public", Name="test")]
 	public partial class Test
 	{
 		[Column("id"), Identity] public int Id { get; set; } // integer
+	}
+
+	[Table(Schema="public", Name="users")]
+	public partial class User
+	{
+		[Column("id"),            PrimaryKey,  Identity] public int       Id           { get; set; } // integer
+		[Column("name"),          NotNull              ] public string    Name         { get; set; } // text
+		[Column("surname"),       NotNull              ] public string    Surname      { get; set; } // text
+		[Column("mail"),          NotNull              ] public string    Mail         { get; set; } // text
+		[Column("password_salt"), NotNull              ] public string    PasswordSalt { get; set; } // text
+		[Column("password_hash"), NotNull              ] public string    PasswordHash { get; set; } // text
+		[Column("reg_date"),      NotNull              ] public DateTime  RegDate      { get; set; } // timestamp (6) without time zone
+		[Column("role"),          NotNull              ] public int       Role         { get; set; } // integer
+		[Column("disabled"),      NotNull              ] public bool      Disabled     { get; set; } // boolean
+		[Column("disabled_date"),    Nullable          ] public DateTime? DisabledDate { get; set; } // timestamp (6) without time zone
+
+		#region Associations
+
+		/// <summary>
+		/// user_role_fk (public.roles)
+		/// </summary>
+		[Association(ThisKey="Id", OtherKey="Id", CanBeNull=false)]
+		public Role FKRole { get; set; }
+
+		#endregion
 	}
 
 	public static partial class TableExtensions
@@ -81,6 +126,18 @@ namespace Chat.Data.Database
 		{
 			return table.FirstOrDefault(t =>
 				t.Schemaversionsid == Schemaversionsid);
+		}
+
+		public static Role Find(this ITable<Role> table, int Id)
+		{
+			return table.FirstOrDefault(t =>
+				t.Id == Id);
+		}
+
+		public static User Find(this ITable<User> table, int Id)
+		{
+			return table.FirstOrDefault(t =>
+				t.Id == Id);
 		}
 	}
 }

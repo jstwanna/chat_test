@@ -8,7 +8,7 @@ namespace Chat.Data.Database
 {
     public class DBMigrations : IUpgradeLog
     {
-        private static readonly Regex toFindScriptRegex = new(@"^Chat\.Data\.Database\.Migrations\..*\d{3}.*\.sql$");
+        private static readonly Regex toFindScriptRegex = new(@"^Chat\.Data\.Database\.Migrations\..*.sql$");
 
         private const string MigrationTableName = "migrations";
 

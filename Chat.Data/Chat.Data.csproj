@@ -7,11 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <None Remove="Database\Migrations\2024_09_02\01_Add_Test_Table.sql" />
+    <None Remove="Database\Migrations\03_Add_users_table.sql" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Database\Migrations\2024_09_02\01_Add_Test_Table.sql" />
+    <EmbeddedResource Include="Database\Migrations\01_Add_Test_Table.sql" />
+    <EmbeddedResource Include="Database\Migrations\02_Add_user_roles_table.sql" />
+    <EmbeddedResource Include="Database\Migrations\03_Add_users_table.sql" />
   </ItemGroup>
 
   <ItemGroup>
