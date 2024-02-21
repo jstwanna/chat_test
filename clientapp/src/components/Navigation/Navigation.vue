@@ -8,20 +8,13 @@ import { Tab } from '../../models/models';
 
 import MyButton from '../UI/MyButton/MyButton.vue';
 
-const props = defineProps({
-  links: {
-    type: Object as PropType<Tab[]>,
-    required: true,
-  },
-  onSwitch: {
-    type: Function,
-    required: true,
-  },
-  tabTitle: {
-    type: String,
-    required: true,
-  },
-});
+interface Props {
+  links: Tab[];
+  onSwitch: (tabTitle: string, component: Component) => void;
+  tabTitle: string;
+}
+
+const props = defineProps<Props>();
 
 const handleSwitchComponent = (tabTitle: string, component: Component) => {
   props.onSwitch(tabTitle, component);

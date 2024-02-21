@@ -4,40 +4,18 @@ import logo from '../../images/logo.svg';
 
 import MyButton from '../UI/MyButton/MyButton.vue';
 
-defineProps({
-  title: {
-    type: String,
-    required: true,
-  },
-  textButton: {
-    type: String,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  disabled: {
-    type: Boolean,
-    required: true,
-  },
-  text: {
-    type: String,
-    required: true,
-  },
-  to: {
-    type: String,
-    required: true,
-  },
-  textLink: {
-    type: String,
-    required: true,
-  },
-  onSubmit: {
-    type: Function as PropType<(event: Event) => void>,
-    required: true,
-  },
-});
+interface Props {
+  title: string;
+  textButton: string;
+  name: string;
+  disabled: boolean;
+  text: string;
+  to: string;
+  textLink: string;
+  onSubmit: (event: Event) => void;
+}
+
+defineProps<Props>();
 </script>
 
 <template>
@@ -55,7 +33,9 @@ defineProps({
     </form>
     <p class="auth__text">
       {{ text }}
-      <RouterLink :to="to" class="auth__link">{{ textLink }}</RouterLink>
+      <RouterLink :to="to" class="auth__link">
+        {{ textLink }}
+      </RouterLink>
     </p>
   </main>
 </template>

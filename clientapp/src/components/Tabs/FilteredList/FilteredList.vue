@@ -9,39 +9,19 @@ const emit = defineEmits(['update:modelValue']);
 
 type CommunicationEntity = Chat | Group | Contact;
 
-const props = defineProps({
-  modelValue: {
-    type: String,
-    required: true,
-  },
-  placeholder: {
-    type: String,
-    required: true,
-  },
-  isNotEmpty: {
-    type: Boolean,
-    required: true,
-  },
-  emptyText: {
-    type: String,
-    required: true,
-  },
-  filteredArray: {
-    type: Array as PropType<CommunicationEntity[]>,
-    required: true,
-  },
-  isFilteredArray: {
-    type: Boolean,
-    required: true,
-  },
-  isChat: {
-    type: Boolean,
-    default: false,
-  },
-  customClass: {
-    type: String,
-    default: '',
-  },
+interface Props {
+  modelValue: string;
+  placeholder: string;
+  isNotEmpty: boolean;
+  emptyText: string;
+  filteredArray: CommunicationEntity[];
+  isFilteredArray: boolean;
+  isChat?: boolean;
+  customClass: string;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  isChat: false,
 });
 
 const computedValue = computed({

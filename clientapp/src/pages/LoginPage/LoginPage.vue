@@ -48,4 +48,3 @@ const handleSubmit = (): void => {
     </template>
   </Auth>
 </template>
-../../composables/useFormAndValidation

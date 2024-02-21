@@ -3,23 +3,17 @@ import './MyButton.css';
 
 const emit = defineEmits(['click']);
 
-defineProps({
-  type: {
-    type: String as PropType<'button' | 'submit' | 'reset'>,
-    default: 'button',
-  },
-  textButton: {
-    type: String,
-    default: '',
-  },
-  disabled: {
-    type: Boolean,
-    default: false,
-  },
-  ariaLabel: {
-    type: String,
-    default: '',
-  },
+interface Props {
+  type: 'button' | 'submit' | 'reset';
+  textButton?: string;
+  disabled?: boolean;
+  ariaLabel?: string;
+}
+
+withDefaults(defineProps<Props>(), {
+  textButton: '',
+  disabled: false,
+  ariaLabel: '',
 });
 
 const handleClickButton = () => emit('click');

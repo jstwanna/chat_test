@@ -1,12 +1,11 @@
 <script setup lang="ts">
 import './Preview.css';
 
-defineProps({
-  to: {
-    type: String,
-    required: true,
-  },
-});
+interface Props {
+  to: string;
+}
+
+defineProps<Props>();
 </script>
 
 <template>

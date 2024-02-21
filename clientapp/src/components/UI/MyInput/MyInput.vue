@@ -1,45 +1,29 @@
 <script setup lang="ts">
-import { PropType } from 'vue';
 import './MyInput.css';
 
 const emit = defineEmits(['update:modelValue']);
 
-const props = defineProps({
-  type: {
-    type: String,
-    required: true,
-  },
-  modelValue: {
-    type: String,
-  },
-  placeholder: {
-    type: String,
-    required: true,
-  },
-  name: {
-    type: String,
-    required: true,
-  },
-  minLength: {
-    type: Number,
-    default: undefined,
-  },
-  maxLength: {
-    type: Number,
-    default: undefined,
-  },
-  handleInput: {
-    type: Function as PropType<(event: Event) => void>,
-    default: undefined,
-  },
-  error: {
-    type: String as PropType<string | null>,
-  },
+interface Props {
+  type: string;
+  modelValue?: string;
+  placeholder: string;
+  name: string;
+  minLength?: number;
+  maxLength?: number;
+  handleInput?: (event: Event) => void;
+  error: string | null;
+}
+
+const props = withDefaults(defineProps<Props>(), {
+  modelValue: '',
+  minLength: undefined,
+  maxLength: undefined,
+  handleInput: undefined,
 });
 
 const computedValue = computed({
   get: () => props.modelValue,
-  set: (newValue: string | undefined) => emit('update:modelValue', newValue),
+  set: (newValue: string) => emit('update:modelValue', newValue),
 });
 </script>
 
