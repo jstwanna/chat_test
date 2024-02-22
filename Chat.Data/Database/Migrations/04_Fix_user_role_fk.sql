@@ -1,0 +1,2 @@
+﻿ALTER TABLE public.users DROP CONSTRAINT user_role_fk;
+ALTER TABLE public.users ADD FOREIGN KEY (role) REFERENCES public.roles(id) ON DELETE RESTRICT ON UPDATE CASCADE;
