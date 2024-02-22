@@ -21,7 +21,10 @@ if (app.Environment.IsDevelopment())
 {
     app.UseCors(devAllowCors);
     app.UseOpenApi();
-    app.UseSwaggerUi();
+    app.UseSwaggerUi(config =>
+    {
+        config.PersistAuthorization = false;
+    });
 }
 
 app.UseHttpsRedirection();
