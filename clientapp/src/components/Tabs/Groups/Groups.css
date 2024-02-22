@@ -21,7 +21,3 @@
 .groups__button:hover {
   opacity: 0.8;
 }
-
-.groups__list {
-  height: calc(100vh - 9.2805rem);
-}

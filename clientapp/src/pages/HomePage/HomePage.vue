@@ -7,7 +7,6 @@ import Navigation from '../../components/Navigation/Navigation.vue';
 import Profile from '../../components/Tabs/Profile/Profile.vue';
 import Chats from '../../components/Tabs/Chats/Chats.vue';
 import Groups from '../../components/Tabs/Groups/Groups.vue';
-import Contacts from '../../components/Tabs/Contacts/Contacts.vue';
 import Settings from '../../components/Tabs/Settings/Settings.vue';
 import Tabs from '../../components/Tabs/Tabs.vue';
 
@@ -35,12 +34,6 @@ const links = shallowRef<Tab[]>([
   },
   {
     id: 4,
-    icon: 'fa-address-book',
-    component: Contacts,
-    toolTip: 'Контакты',
-  },
-  {
-    id: 5,
     icon: 'fa-gear',
     component: Settings,
     toolTip: 'Настройки',

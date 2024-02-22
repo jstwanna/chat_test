@@ -37,20 +37,17 @@ const { isNotEmpty, filteredArray, isFilteredArrayNotEmpty } = useFilteredArray<
 </script>
 
 <template>
-  <div class="chats">
-    <FilteredList
-      v-model="searchQuery"
-      placeholder="Поиск чата или сообщения"
-      :isChat="true"
-      :isNotEmpty="isNotEmpty"
-      emptyText="Пока нет чатов и сообщений. Начните новый разговор прямо сейчас!"
-      :filteredArray="filteredArray"
-      :isFilteredArray="isFilteredArrayNotEmpty"
-      customClass="chats__list"
-    >
-      <template #list-item="{ item }">
-        <ChatPreview v-if="isChat(item)" :chats="item" />
-      </template>
-    </FilteredList>
-  </div>
+  <FilteredList
+    v-model="searchQuery"
+    placeholder="Поиск чата или сообщения"
+    :isChat="true"
+    :isNotEmpty="isNotEmpty"
+    emptyText="Пока нет чатов и сообщений. Начните новый разговор прямо сейчас!"
+    :filteredArray="filteredArray"
+    :isFilteredArray="isFilteredArrayNotEmpty"
+  >
+    <template #list-item="{ item }">
+      <ChatPreview v-if="isChat(item)" :chats="item" />
+    </template>
+  </FilteredList>
 </template>

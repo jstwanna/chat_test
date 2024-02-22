@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import './FilteredList.css';
 
-import { Chat, Group, Contact } from '../../../models/models';
+import { Chat, Group } from '../../../models/models';
 
 import MyInput from '../../UI/MyInput/MyInput.vue';
 
 const emit = defineEmits(['update:modelValue']);
 
-type CommunicationEntity = Chat | Group | Contact;
+type CommunicationEntity = Chat | Group;
 
 interface Props {
   modelValue: string;
@@ -17,7 +17,6 @@ interface Props {
   filteredArray: CommunicationEntity[];
   isFilteredArray: boolean;
   isChat?: boolean;
-  customClass: string;
 }
 
 const props = withDefaults(defineProps<Props>(), {
@@ -31,29 +30,26 @@ const computedValue = computed({
 </script>
 
 <template>
-  <div class="filtered-list">
-    <slot name="header" />
+  <slot name="header" />
 
-    <div class="filtered-list__search-box">
-      <MyInput
-        v-model="computedValue"
-        type="text"
-        name="search"
-        :placeholder="placeholder"
-        :error="null"
-        icon="fa-magnifying-glass"
-      />
-    </div>
+  <MyInput
+    v-model="computedValue"
+    type="text"
+    name="search"
+    :placeholder="placeholder"
+    :error="null"
+    icon="fa-magnifying-glass"
+    class="filtered-list__search-box"
+  />
 
-    <div v-if="isNotEmpty">
-      <p v-if="isChat" class="filtered-list__text">Недавние</p>
-      <div :class="`filtered-list__list ${customClass}`" v-if="isFilteredArray">
-        <div v-for="(item, index) in filteredArray" :key="item.id">
-          <slot name="list-item" :item="item" :index="index" />
-        </div>
+  <template v-if="isNotEmpty">
+    <p v-if="isChat" class="filtered-list__text">Недавние</p>
+    <div class="filtered-list__list" v-if="isFilteredArray">
+      <div v-for="item in filteredArray" :key="item.id">
+        <slot name="list-item" :item="item" />
       </div>
-      <p class="filtered-list__no-result" v-else>Ничего не найдено :(</p>
     </div>
-    <p class="filtered-list__empty" v-else>{{ emptyText }}</p>
-  </div>
+    <p class="filtered-list__no-result" v-else>Ничего не найдено :(</p>
+  </template>
+  <p class="filtered-list__empty" v-else>{{ emptyText }}</p>
 </template>

@@ -2,16 +2,16 @@ export const profileInfo = ref([
   {
     id: 1,
     title: 'Имя',
-    text: 'Денис Денисович',
+    text: 'Денис',
   },
   {
     id: 2,
+    title: 'Фамилия',
+    text: 'Денисович',
+  },
+  {
+    id: 3,
     title: 'Email',
     text: 'denis04la@rambler.ru',
   },
-  // {
-  //   id: 3,
-  //   title: 'Местоположение',
-  //   text: 'Россия, Москва',
-  // },
 ]);

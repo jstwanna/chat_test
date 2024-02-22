@@ -9,13 +9,12 @@
 }
 
 .filtered-list__list {
+  flex: 1;
   box-sizing: border-box;
   padding: 0 1rem 1rem;
   margin: 1.5rem 0.5rem 0;
   list-style: none;
   overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: hsl(218, 33%, 95%) transparent;
 }
 
 .filtered-list__no-result {
@@ -42,4 +41,11 @@
   padding-top: 1.5rem;
   color: hsl(218, 31%, 95%);
   text-align: center;
+}
+
+@-moz-document url-prefix() {
+  .filtered-list__list {
+    scrollbar-color: hsl(218, 33%, 95%) transparent;
+    scrollbar-width: thin;
+  }
 }

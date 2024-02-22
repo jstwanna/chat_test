@@ -66,7 +66,6 @@ watch(isPopup, () => {
       emptyText="Пока нету ни одной группы"
       :filteredArray="filteredArray"
       :isFilteredArray="isFilteredArrayNotEmpty"
-      customClass="groups__list"
     >
       <template #header>
         <MyButton
