@@ -7,11 +7,7 @@ const emit = defineEmits({
   'update:modelValue': (_value: Boolean) => true,
 });
 
-interface Props {
-  modelValue: boolean;
-}
-
-const props = defineProps<Props>();
+const props = defineProps<{ modelValue: boolean }>();
 
 const visible = computed({
   get: () => props.modelValue,

@@ -4,11 +4,7 @@ import './GroupPreview.css';
 import { Group } from '../../../../models/models';
 import Preview from '../../Preview/Preview.vue';
 
-interface Props {
-  groups: Group;
-}
-
-defineProps<Props>();
+defineProps<{ groups: Group }>();
 </script>
 
 <template>

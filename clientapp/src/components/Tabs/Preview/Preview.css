@@ -5,11 +5,11 @@
   transition: all 0.35s linear;
   border-radius: 0.25rem;
   text-decoration: none;
-  border-top: 0.0625rem solid hsl(212, 15%, 22%);
+  border: 0.0625rem solid hsl(212, 15%, 22%);
 }
 
 .preview:focus {
-  border: 0.0625rem solid hsl(225, 30%, 73%);
+  border-color: hsl(225, 30%, 73%);
 }
 
 .preview_active,

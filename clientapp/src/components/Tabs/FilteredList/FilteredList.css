@@ -1,19 +1,5 @@
 .filtered-list__search-box {
-  background-color: hsl(210, 16%, 25%);
-  color: hsl(225, 30%, 73%);
-  border-radius: 0.4rem;
-  display: flex;
-  align-items: center;
   margin: 1.5rem 1.5rem 0;
-}
-
-.filtered-list__icon {
-  font-size: 1.125rem;
-  padding: 0rem 1rem;
-}
-
-.filtered-list__input {
-  width: 100%;
 }
 
 .filtered-list__text {

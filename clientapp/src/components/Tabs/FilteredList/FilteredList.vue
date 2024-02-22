@@ -35,17 +35,13 @@ const computedValue = computed({
     <slot name="header" />
 
     <div class="filtered-list__search-box">
-      <font-awesome-icon
-        icon="fa-solid fa-magnifying-glass"
-        class="filtered-list__icon"
-      />
       <MyInput
         v-model="computedValue"
         type="text"
         name="search"
         :placeholder="placeholder"
         :error="null"
-        class="filtered-list__input"
+        icon="fa-magnifying-glass"
       />
     </div>
 

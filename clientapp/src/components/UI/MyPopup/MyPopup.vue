@@ -5,16 +5,12 @@ import MyButton from '../MyButton/MyButton.vue';
 
 const emit = defineEmits(['closePopup', 'update:modelValue']);
 
-const props = defineProps({
-  modelValue: {
-    type: Boolean,
-    required: true,
-  },
-  title: {
-    type: String,
-    required: true,
-  },
-});
+interface Props {
+  modelValue: boolean;
+  title: string;
+}
+
+const props = defineProps<Props>();
 
 const popup = ref<HTMLElement | null>(null);
 

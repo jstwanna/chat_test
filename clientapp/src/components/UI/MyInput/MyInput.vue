@@ -11,14 +11,18 @@ interface Props {
   minLength?: number;
   maxLength?: number;
   handleInput?: (event: Event) => void;
-  error: string | null;
+  error?: string | null;
+  icon?: string | null;
 }
+
+const inputFocus = ref(false);
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: '',
   minLength: undefined,
   maxLength: undefined,
   handleInput: undefined,
+  icon: null,
 });
 
 const computedValue = computed({
@@ -29,23 +33,35 @@ const computedValue = computed({
 
 <template>
   <div class="input-block">
-    <input
-      v-model="computedValue"
-      @input="handleInput"
-      :type="type"
-      :name="name"
-      :placeholder="placeholder"
-      :minlength="minLength"
-      :maxlength="maxLength"
-      autocomplete="off"
-      required
+    <div
       :class="[
-        'input-block__input',
+        'input-block__container',
         {
-          'input-block__input_type_error': error,
+          'input-block__container_type_active': inputFocus,
+          'input-block__container_type_error': error,
         },
       ]"
-    />
+    >
+      <font-awesome-icon
+        :icon="`fa-solid ${icon}`"
+        class="input-block__icon"
+        v-if="icon"
+      />
+      <input
+        v-model="computedValue"
+        @input="handleInput"
+        :type="type"
+        :name="name"
+        :placeholder="placeholder"
+        :minlength="minLength"
+        :maxlength="maxLength"
+        autocomplete="off"
+        required
+        @focus="inputFocus = true"
+        @blur="inputFocus = false"
+        :class="['input-block__input']"
+      />
+    </div>
     <p v-if="error !== null" class="input-block__error">
       {{ error }}
     </p>
