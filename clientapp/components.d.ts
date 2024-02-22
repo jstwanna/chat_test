@@ -7,12 +7,24 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
-    ContactBlock: typeof import('./src/components/Tabs/Contacts/ContactBlock/ContactBlock.vue')['default']
+    App: typeof import('./src/components/App/App.vue')['default']
+    Auth: typeof import('./src/components/Auth/Auth.vue')['default']
+    ChatPreview: typeof import('./src/components/Tabs/Chats/ChatPreview/ChatPreview.vue')['default']
+    Chats: typeof import('./src/components/Tabs/Chats/Chats.vue')['default']
+    Contacts: typeof import('./src/components/Tabs/Contacts/Contacts.vue')['default']
     FilteredList: typeof import('./src/components/Tabs/FilteredList/FilteredList.vue')['default']
     GroupPreview: typeof import('./src/components/Tabs/Groups/GroupPreview/GroupPreview.vue')['default']
+    Groups: typeof import('./src/components/Tabs/Groups/Groups.vue')['default']
+    MyButton: typeof import('./src/components/UI/MyButton/MyButton.vue')['default']
+    MyCollapse: typeof import('./src/components/UI/MyCollapse/MyCollapse.vue')['default']
+    MyInput: typeof import('./src/components/UI/MyInput/MyInput.vue')['default']
     MyPopup: typeof import('./src/components/UI/MyPopup/MyPopup.vue')['default']
+    Navigation: typeof import('./src/components/Navigation/Navigation.vue')['default']
     Preview: typeof import('./src/components/Tabs/Preview/Preview.vue')['default']
+    Profile: typeof import('./src/components/Tabs/Profile/Profile.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
+    Settings: typeof import('./src/components/Tabs/Settings/Settings.vue')['default']
+    Tabs: typeof import('./src/components/Tabs/Tabs.vue')['default']
   }
 }
