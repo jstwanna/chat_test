@@ -5,22 +5,23 @@ export interface Tab {
   toolTip: string;
 }
 
-export interface Chat {
-  id: number;
-  to: string;
-  avatar: string;
-  name: string;
-  time: string;
+//person to person chat model
+export interface P2PChat {
+  person: Contact;
+  lastMessage: string;
+  isOnline: boolean;
 }
 
-export interface Group {
+//group chat model
+export interface GroupChat {
   id: number;
-  to: string;
   title: string;
-  description: string;
+  imageUrl: string;
+  lastMessage: string;
 }
 
 export interface Contact {
   id: number;
   name: string;
+  imageUrl: string;
 }
