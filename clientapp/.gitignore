@@ -25,3 +25,6 @@ dist-ssr
 
 #pnpm packages file
 pnpm-lock.yaml
+
+#api generated
+src/api/api-generated.ts

@@ -8,6 +8,11 @@
 
   <ItemGroup>
     <None Remove="Database\Migrations\03_Add_users_table.sql" />
+    <None Remove="Database\Migrations\04_Fix_user_role_fk.sql" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Database\Migrations\04_Fix_user_role_fk.sql" />
   </ItemGroup>
 
   <ItemGroup>

@@ -19,9 +19,12 @@ app.Services.GetRequiredService<DBMigrations>().Apply();
 
 if (app.Environment.IsDevelopment())
 {
-    app.UseOpenApi();
-    app.UseSwaggerUI();
     app.UseCors(devAllowCors);
+    app.UseOpenApi();
+    app.UseSwaggerUi(config =>
+    {
+        config.PersistAuthorization = false;
+    });
 }
 
 app.UseHttpsRedirection();
@@ -75,7 +78,7 @@ static void ConfigureServices (IHostApplicationBuilder builder, string devCors)
         options.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
     }).AddJwtBearer(o =>
     {
-        o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+        o.TokenValidationParameters = new TokenValidationParameters
         {
             ValidIssuer = builder.Configuration["Jwt:Issuer"],
             ValidAudience = builder.Configuration["Jwt:Audience"],
