@@ -26,4 +26,4 @@ jobs:
       run: |
         cd clientapp
         npm install
-        npm typecheck
+        npm run typecheck
