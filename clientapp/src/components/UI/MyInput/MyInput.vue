@@ -12,17 +12,18 @@ interface Props {
   maxLength?: number;
   handleInput?: (event: Event) => void;
   error?: string | null;
-  icon?: string | null;
+  icon?: string;
 }
 
 const inputFocus = ref(false);
 
 const props = withDefaults(defineProps<Props>(), {
   modelValue: '',
-  minLength: undefined,
-  maxLength: undefined,
-  handleInput: undefined,
-  icon: null,
+  minLength: 0,
+  maxLength: Infinity,
+  handleInput: () => {},
+  icon: '',
+  error: '',
 });
 
 const computedValue = computed({

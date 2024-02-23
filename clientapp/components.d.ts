@@ -8,6 +8,7 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     Adada: typeof import('./src/components/Tabs/FilteredList/adada/adada.vue')['default']
+    MyNotification: typeof import('./src/components/UI/MyNotification/MyNotification.vue')['default']
     Preview: typeof import('./src/components/Tabs/Preview/Preview.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']

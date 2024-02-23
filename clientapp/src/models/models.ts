@@ -27,3 +27,9 @@ export interface Contact {
   name: string;
   imageUrl: string;
 }
+
+export interface Notification {
+  id: number;
+  message: string;
+  type: string;
+}

@@ -1,0 +1,31 @@
+.notification {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+}
+
+.notification__box {
+  margin-bottom: 0.625rem;
+  padding: 0.625rem;
+  border-radius: 0.25rem;
+  color: hsl(218, 33%, 95%);
+  font-weight: 700;
+}
+
+.notification__box_type_error {
+  background-color: hsl(346, 84%, 61%);
+}
+
+.notification__box_type_confirm {
+  background-color: hsl(164, 95%, 43%);
+}
+
+.slide-fade-enter-active,
+.slide-fade-leave-active {
+  transition: all 0.35s;
+}
+.slide-fade-enter,
+.slide-fade-leave-to {
+  transform: translateX(-100%);
+  opacity: 0;
+}

@@ -1,15 +1,40 @@
 <script setup lang="ts">
 import './LoginPage.css';
 
+import router from '../../router/router';
+
 import { useFormAndValidation } from '../../composables/useFormAndValidation';
+import { AuthClient, jwtLsName, ApiException } from '../../api/api-generated';
+import { addNotification } from '../../utils/utils';
+import { Notification } from '../../models/models';
 
 import Auth from '../../components/Auth/Auth.vue';
 import MyInput from '../../components/UI/MyInput/MyInput.vue';
+import MyNotification from '../../components/UI/MyNotification/MyNotification.vue';
 
 const { values, handleChange, errors, isValid } = useFormAndValidation();
 
-const handleSubmit = (): void => {
-  console.log('login');
+const notifications = ref<Notification[]>([]);
+
+const auth = new AuthClient();
+
+const handleSubmit = async () => {
+  auth
+    .login({ mail: values.email, password: values.password })
+    .then((res) => {
+      if (res) {
+        localStorage.setItem(jwtLsName, res);
+        router.push('/');
+      }
+    })
+    .catch((error: ApiException) => {
+      if (error.status === 401) {
+        addNotification(notifications, 'Проверьте данные', 'error');
+      } else {
+        addNotification(notifications, 'Ошибка сервера!', 'error');
+      }
+      console.error('Произошла ошибка входа', error.message);
+    });
 };
 </script>
 
@@ -47,4 +72,6 @@ const handleSubmit = (): void => {
       />
     </template>
   </Auth>
+
+  <MyNotification :notifications="notifications" />
 </template>

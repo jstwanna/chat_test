@@ -6,7 +6,7 @@ import { profileInfo } from '../../../utils/constants';
 
 import MyCollapse from '../../UI/MyCollapse/MyCollapse.vue';
 
-const profileCollapse = ref<boolean>(false);
+const profileCollapse = ref<boolean>(true);
 </script>
 
 <template>
