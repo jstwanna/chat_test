@@ -96,7 +96,7 @@ namespace Chat.Controllers
                 {
                     new Claim("Id", id.ToString()),
                     new Claim("name", name),
-                    new Claim("surname", surname)
+                    new Claim("surname", surname),
                 }),
                 Expires = DateTime.UtcNow.AddMinutes(60),
                 Issuer = jwtSettings.Issuer,

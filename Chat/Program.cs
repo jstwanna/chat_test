@@ -1,5 +1,6 @@
 using Chat.Data.Database;
 using Chat.Data.Models.Account;
+using Chat.Data.Services;
 using Chat.Hubs;
 using LinqToDB;
 using LinqToDB.AspNet;
@@ -91,4 +92,5 @@ static void ConfigureServices (IHostApplicationBuilder builder, string devCors)
     });
     builder.Services.AddAuthorization();
     builder.Services.Configure<JwtSettings>(builder.Configuration.GetSection("Jwt"));
+    builder.Services.ConfigureServices();
 }
