@@ -30,7 +30,7 @@ namespace Chat.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> Login (AuthModel model)
+        public async Task<string> Login (AuthModel model)
         {
             if (!string.IsNullOrEmpty(model.Mail) && !string.IsNullOrEmpty(model.Password))
             {
@@ -44,46 +44,39 @@ namespace Chat.Controllers
                     {
                         var token = CreateToken(user.Id, user.Name, user.Surname, jwtSettings);
 
-                        return Ok(token);
+                        return token;
                     }
-                    return Unauthorized("Неверные данные");
+                    throw new Exception("Неверные данные");
                 }
-                return Unauthorized("Пользователь не найден");
+                throw new Exception("Пользователь не найден");
             }
-            return Unauthorized("Не указана почта или пароль");
+            throw new Exception("Не указана почта или пароль");
         }
 
-        public async Task<IActionResult> Registration (RegModel model)
+        public async Task<string> Registration (RegModel model)
         {
-            try
+            var existedUserWithLogin = await dBContext.Users.Where(w => w.Mail == model.Mail).FirstOrDefaultAsync();
+
+            if (existedUserWithLogin != null)
             {
-                var existedUserWithLogin = await dBContext.Users.Where(w => w.Mail == model.Mail).FirstOrDefaultAsync();
-
-                if (existedUserWithLogin != null)
-                {
-                    return BadRequest("Указанная почта уже используется");
-                }
-
-                var salt = GetRandomSalt();
-                var pass = HashPasword(model.Password, salt);
-
-                var newUser = dBContext.Users
-                    .Value(v => v.Mail, model.Mail)
-                    .Value(v => v.Name, model.Name)
-                    .Value(v => v.Surname, model.Surname)
-                    .Value(v => v.PasswordHash, pass)
-                    .Value(v => v.PasswordSalt, Convert.ToBase64String(salt));
-
-                var userId = await newUser.InsertAsync();
-
-                var token = CreateToken(userId, model.Name, model.Surname, jwtSettings);
-
-                return Ok(token);
+                throw new Exception("Указанная почта уже используется");
             }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+
+            var salt = GetRandomSalt();
+            var pass = HashPasword(model.Password, salt);
+
+            var newUser = dBContext.Users
+                .Value(v => v.Mail, model.Mail)
+                .Value(v => v.Name, model.Name)
+                .Value(v => v.Surname, model.Surname)
+                .Value(v => v.PasswordHash, pass)
+                .Value(v => v.PasswordSalt, Convert.ToBase64String(salt));
+
+            var userId = await newUser.InsertAsync();
+
+            var token = CreateToken(userId, model.Name, model.Surname, jwtSettings);
+
+            throw new Exception(token);
         }
 
         private static string CreateToken (int id, string name, string surname, JwtSettings jwtSettings)
