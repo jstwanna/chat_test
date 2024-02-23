@@ -22,8 +22,11 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: Build
-      run: |
-        cd clientapp
-        npm install
-        npm run typecheck
+    - name: go to client folder
+      run: cd clientapp
+
+    - name: install packages
+      run: npm install
+
+    - name: check for errors
+      run: npm run typecheck
