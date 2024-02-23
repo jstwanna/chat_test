@@ -9,6 +9,7 @@ export interface Tab {
 export interface P2PChat {
   person: Contact;
   lastMessage: string;
+  lastMessageDate: number;
   isOnline: boolean;
 }
 
@@ -18,6 +19,7 @@ export interface GroupChat {
   title: string;
   imageUrl: string;
   lastMessage: string;
+  lastMessageDate: number;
 }
 
 export interface Contact {

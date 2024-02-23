@@ -1,53 +1,46 @@
 <script setup lang="ts">
 import './Chats.css';
-import avatar from '../../../images/avatar-1.jpg';
 
-import { Chat } from '../../../models/models';
-import { useFilteredArray } from '../../../composables/useFilteredArray';
-import { createTypeChecker } from '../../../utils/utils';
+import { P2PChat } from '../../../models/models';
 
 import ChatPreview from '../Chats/ChatPreview/ChatPreview.vue';
 import FilteredList from '../FilteredList/FilteredList.vue';
 
-const isChat = createTypeChecker<Chat>(['avatar', 'name', 'time', 'to']);
+const searchChat = ref<string>('');
 
-const searchQuery = ref<string>('');
-
-const chats = ref<Chat[]>([
+const chats = ref<P2PChat[]>([
   {
-    id: 1,
-    to: '/chat1',
-    avatar: avatar,
-    name: 'Denis Vlaskin',
-    time: '10:12',
-  },
-  {
-    id: 2,
-    to: '/chat2',
-    avatar: avatar,
-    name: 'Denis фф',
-    time: '10:34',
+    person: {
+      id: 1,
+      name: 'asdaasddaasasddasddasdasdasds',
+      imageUrl:
+        'https://catherineasquithgallery.com/uploads/posts/2021-03/1614612233_137-p-fon-dlya-fotoshopa-priroda-209.jpg',
+    },
+    lastMessage: 'asasdsadadsadasdassdadassdasadasdassadsaddasdassaaas',
+    isOnline: false,
+    lastMessageDate: new Date().getDate(),
   },
 ]);
 
-const { isNotEmpty, filteredArray, isFilteredArrayNotEmpty } = useFilteredArray<
-  Chat,
-  'name'
->(chats, searchQuery, 'name');
+const filteredArray = computed(() => {
+  return chats.value.filter((chat) => {
+    return chat.person.name
+      .toLowerCase()
+      .includes(searchChat.value.toLowerCase());
+  });
+});
 </script>
 
 <template>
   <FilteredList
-    v-model="searchQuery"
+    v-model="searchChat"
     placeholder="Поиск чата или сообщения"
     :isChat="true"
-    :isNotEmpty="isNotEmpty"
-    emptyText="Пока нет чатов и сообщений. Начните новый разговор прямо сейчас!"
+    emptyText="Нет доступных чатов"
     :filteredArray="filteredArray"
-    :isFilteredArray="isFilteredArrayNotEmpty"
   >
     <template #list-item="{ item }">
-      <ChatPreview v-if="isChat(item)" :chats="item" />
+      <ChatPreview :chats="item" />
     </template>
   </FilteredList>
 </template>

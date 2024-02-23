@@ -1,21 +1,34 @@
 <script setup lang="ts">
 import './GroupPreview.css';
 
-import { Group } from '../../../../models/models';
+import { GroupChat } from '../../../../models/models';
 import Preview from '../../Preview/Preview.vue';
 
-defineProps<{ groups: Group }>();
+defineProps<{ groups: GroupChat }>();
 </script>
 
 <template>
-  <Preview :to="groups.to" class="group-preview">
+  <Preview :to="`/group/:${groups.id}`" class="group-preview">
     <template #preview>
-      <span class="group-preview__title">{{
-        groups.title[0].toUpperCase()
-      }}</span>
+      <img
+        :src="groups.imageUrl"
+        alt="Фото профиля"
+        class="group-preview__image"
+        v-if="groups.imageUrl"
+      />
+      <p class="group-preview__no-image" v-else>
+        {{ groups.title[0].toUpperCase() }}
+      </p>
+
+      <div class="group-preview__info">
+        <h3 class="group-preview__name">{{ groups.title }}</h3>
+        <p class="group-preview__last-message">
+          {{ groups.lastMessage }}
+        </p>
+      </div>
       <div class="group-preview__content">
-        <h5 class="group-preview__title-full">#{{ groups.title }}</h5>
-        <span class="group-preview__miss">+23</span>
+        <p class="group-preview__time">{{ groups.lastMessageDate }}</p>
+        <span class="group-preview__miss-message">100+</span>
       </div>
     </template>
   </Preview>

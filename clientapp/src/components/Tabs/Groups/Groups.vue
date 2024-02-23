@@ -3,9 +3,7 @@ import './Groups.css';
 import '../../../directives/TooltipDirective/TooltipDirective.css';
 
 import { useFormAndValidation } from '../../../composables/useFormAndValidation';
-import { useFilteredArray } from '../../../composables/useFilteredArray';
-import { Group } from '../../../models/models';
-import { createTypeChecker } from '../../../utils/utils';
+import { GroupChat } from '../../../models/models';
 
 import MyButton from '../../UI/MyButton/MyButton.vue';
 import MyPopup from '../../UI/MyPopup/MyPopup.vue';
@@ -13,44 +11,44 @@ import MyInput from '../../UI/MyInput/MyInput.vue';
 import GroupPreview from './GroupPreview/GroupPreview.vue';
 import FilteredList from '../FilteredList/FilteredList.vue';
 
-const isGroup = createTypeChecker<Group>(['title', 'to', 'description']);
-
 const { values, handleChange, errors, isValid, resetForm } =
   useFormAndValidation();
 
 const searchGroup = ref<string>('');
 const isPopup = ref<boolean>(false);
 
-const groups = ref<Group[]>([
+const groups = ref<GroupChat[]>([
   {
     id: 1,
     title: 'ввввввввввввввв',
-    description: '',
-    to: '/group1',
+    imageUrl: '',
+    lastMessage: 'adadadadadada',
+    lastMessageDate: 200,
   },
 ]);
-
-const { isNotEmpty, filteredArray, isFilteredArrayNotEmpty } = useFilteredArray<
-  Group,
-  'title'
->(groups, searchGroup, 'title');
 
 const togglePopup = (): void => {
   isPopup.value = !isPopup.value;
 };
 
 const handleSubmit = (): void => {
-  const newGroup: Group = {
+  const newGroup: GroupChat = {
     id: groups.value.length + 1,
-    to: `/group${groups.value.length + 1}`,
+    imageUrl: `https://catherineasquithgallery.com/uploads/posts/2021-03/1614612233_137-p-fon-dlya-fotoshopa-priroda-209.jpg`,
     title: values.title,
-    description: values.description,
+    lastMessage: 'asddadaa',
+    lastMessageDate: 10,
   };
 
   groups.value.push(newGroup);
   togglePopup();
-  console.log('create');
 };
+
+const filteredArray = computed(() => {
+  return groups.value.filter((chat) => {
+    return chat.title.toLowerCase().includes(searchGroup.value.toLowerCase());
+  });
+});
 
 watch(isPopup, () => {
   isPopup.value ? resetForm() : null;
@@ -58,38 +56,35 @@ watch(isPopup, () => {
 </script>
 
 <template>
-  <div class="groups">
-    <FilteredList
-      v-model="searchGroup"
-      placeholder="Поиск групп..."
-      :isNotEmpty="isNotEmpty"
-      emptyText="Пока нету ни одной группы"
-      :filteredArray="filteredArray"
-      :isFilteredArray="isFilteredArrayNotEmpty"
-    >
-      <template #header>
-        <MyButton
-          type="button"
-          class="groups__icon"
-          ariaLabel="Поиск группы"
-          v-tooltip="{ text: 'Создать группу', position: 'bottom' }"
-          @click="togglePopup"
-        >
-          <template #icon>
-            <font-awesome-icon icon="fa-solid fa-user-group" />
-          </template>
-        </MyButton>
-      </template>
-      <template #list-item="{ item }">
-        <GroupPreview v-if="isGroup(item)" :groups="item" />
-      </template>
-    </FilteredList>
-  </div>
+  <FilteredList
+    v-model="searchGroup"
+    placeholder="Поиск групп..."
+    emptyText="Нет доступных групп"
+    :filteredArray="filteredArray"
+  >
+    <template #header>
+      <MyButton
+        type="button"
+        class="groups__icon"
+        ariaLabel="Поиск группы"
+        v-tooltip="{ text: 'Создать группу', position: 'bottom' }"
+        @click="togglePopup"
+      >
+        <template #icon>
+          <font-awesome-icon icon="fa-solid fa-user-group" />
+        </template>
+      </MyButton>
+    </template>
+    <template #list-item="{ item }">
+      <GroupPreview :groups="item" />
+    </template>
+  </FilteredList>
 
   <MyPopup
     v-model="isPopup"
     title="Создать новую группу"
     @closePopup="togglePopup"
+    class="groups"
   >
     <template #body>
       <form name="create-group" novalidate @submit.prevent="handleSubmit">

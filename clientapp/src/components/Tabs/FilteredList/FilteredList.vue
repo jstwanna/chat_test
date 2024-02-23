@@ -1,21 +1,15 @@
 <script setup lang="ts">
 import './FilteredList.css';
 
-import { Chat, Group } from '../../../models/models';
-
 import MyInput from '../../UI/MyInput/MyInput.vue';
 
 const emit = defineEmits(['update:modelValue']);
 
-type CommunicationEntity = Chat | Group;
-
 interface Props {
   modelValue: string;
   placeholder: string;
-  isNotEmpty: boolean;
   emptyText: string;
-  filteredArray: CommunicationEntity[];
-  isFilteredArray: boolean;
+  filteredArray: any[];
   isChat?: boolean;
 }
 
@@ -27,6 +21,8 @@ const computedValue = computed({
   get: () => props.modelValue,
   set: (newValue: string) => emit('update:modelValue', newValue),
 });
+
+const isNotEmpty = computed(() => props.filteredArray.length > 0);
 </script>
 
 <template>
@@ -44,12 +40,11 @@ const computedValue = computed({
 
   <template v-if="isNotEmpty">
     <p v-if="isChat" class="filtered-list__text">Недавние</p>
-    <div class="filtered-list__list" v-if="isFilteredArray">
-      <div v-for="item in filteredArray" :key="item.id">
+    <div class="filtered-list__list">
+      <div v-for="(item, index) in filteredArray" :key="index">
         <slot name="list-item" :item="item" />
       </div>
     </div>
-    <p class="filtered-list__no-result" v-else>Ничего не найдено :(</p>
   </template>
-  <p class="filtered-list__empty" v-else>{{ emptyText }}</p>
+  <p class="filtered-list__no-result" v-else>{{ emptyText }}</p>
 </template>
