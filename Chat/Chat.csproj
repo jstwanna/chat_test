@@ -20,11 +20,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\" />
+    <ProjectReference Include="..\Chat.Data\Chat.Data.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Chat.Data\Chat.Data.csproj" />
+    <Folder Include="wwwroot\" />
   </ItemGroup>
 
 	<Target Name="NSwag" AfterTargets="PostBuildEvent">

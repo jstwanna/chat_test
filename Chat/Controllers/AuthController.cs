@@ -5,6 +5,7 @@ using LinqToDB;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using NSwag.Annotations;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Security.Cryptography;
@@ -30,6 +31,7 @@ namespace Chat.Controllers
         }
 
         [HttpPost]
+        [SwaggerResponse(typeof(string))]
         public async Task<IActionResult> Login (AuthModel model)
         {
             if (!string.IsNullOrEmpty(model.Mail) && !string.IsNullOrEmpty(model.Password))
@@ -53,6 +55,8 @@ namespace Chat.Controllers
             return Unauthorized("Не указана почта или пароль");
         }
 
+        [HttpPost]
+        [SwaggerResponse(typeof(string))]
         public async Task<IActionResult> Registration (RegModel model)
         {
             try
