@@ -22,14 +22,14 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
-    - name: go to client folder
-      run: cd clientapp
-
     - name: install packages
+      working-directory: ./clientapp
       run: npm install
 
     - name: check for errors
+      working-directory: ./clientapp
       run: npm run typecheck
 
     - name: build
+      working-directory: ./clientapp
       run: npm run build
