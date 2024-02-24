@@ -7,7 +7,7 @@ defineProps<{ notifications: Notification[] }>();
 </script>
 
 <template>
-  <section class="notification">
+  <div class="notification">
     <transition-group name="slide-fade">
       <div
         v-for="notification in notifications"
@@ -17,5 +17,5 @@ defineProps<{ notifications: Notification[] }>();
         {{ notification.message }}
       </div>
     </transition-group>
-  </section>
+  </div>
 </template>

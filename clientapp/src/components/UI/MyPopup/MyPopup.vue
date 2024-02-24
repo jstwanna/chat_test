@@ -56,7 +56,7 @@ watch(modelUpdate, () => {
 
 <template>
   <Transition name="popup">
-    <section ref="popup" class="popup" v-if="modelUpdate">
+    <div ref="popup" class="popup" v-if="modelUpdate">
       <div class="popup__content">
         <div class="popup__header">
           <h3 class="popup__title">{{ title }}</h3>
@@ -75,6 +75,6 @@ watch(modelUpdate, () => {
           <slot name="body" />
         </div>
       </div>
-    </section>
+    </div>
   </Transition>
 </template>

@@ -27,7 +27,7 @@ const handleClickButton = () => emit('click');
     @click="handleClickButton"
     class="button"
   >
-    {{ textButton }}
     <slot name="icon" />
+    {{ textButton }}
   </button>
 </template>
