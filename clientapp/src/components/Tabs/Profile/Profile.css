@@ -1,5 +1,6 @@
 .profile {
   padding: 1.5rem 1.5rem 0;
+  box-sizing: border-box;
 }
 
 .profile__user-info {
@@ -72,10 +73,32 @@
 
 .profile__status {
   color: hsl(226, 30%, 75%);
-  margin: 0 auto 1.5rem;
-  max-width: 18.5rem;
+  margin-bottom: 1.5rem;
   text-align: center;
-  overflow-wrap: break-word;
+}
+
+.profile__collapse-content {
+  position: relative;
+}
+
+.profile__collapse-edit {
+  position: absolute;
+  top: -0.35rem;
+  right: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  height: fit-content;
+  background-color: hsl(210, 16%, 25%);
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.25rem;
+  border: 0.0625rem solid transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.profile__collapse-edit:hover {
+  opacity: 0.7;
 }
 
 .profile__collapse-title {
@@ -102,4 +125,19 @@
 
 .profile__collapse-body:last-child {
   margin: 0;
+}
+
+.profile__logout {
+  position: absolute;
+  background-color: transparent;
+  color: hsl(346, 84%, 61%);
+  font-size: 1.125rem;
+  font-weight: 700;
+  bottom: 1rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.profile__logout:hover {
+  opacity: 0.8;
 }

@@ -1,14 +1,16 @@
 <script setup lang="ts">
 import './Profile.css';
 
+import { jwtLsName } from '../../../api/api-generated';
 import { user } from '../../../auth/auth';
 import { useFormAndValidation } from '../../../composables/useFormAndValidation';
+import { usePopupWithForm } from '../../../composables/usePopupWithForm';
+import router from '../../../router/router';
 
 import MyCollapse from '../../UI/MyCollapse/MyCollapse.vue';
 import MyButton from '../../UI/MyButton/MyButton.vue';
 import PopupWithForm from '../../PopupWithForm/PopupWithForm.vue';
 import MyInput from '../../UI/MyInput/MyInput.vue';
-import { usePopupWithForm } from '../../../composables/usePopupWithForm';
 
 const { values, handleChange, errors, isValid, resetForm } =
   useFormAndValidation();
@@ -47,7 +49,7 @@ const profileCollapse = ref<boolean>(true);
 const avatar = ref<string>(
   'https://get.pxhere.com/photo/person-people-portrait-facial-expression-hairstyle-smile-emotion-portrait-photography-134689.jpg'
 );
-const status = ref<string>('Статус или описание о себе на 200 букв');
+const status = ref<string>('1234567890123@5678901234567890');
 
 const handleUpdateAvatar = () => {
   avatar.value = values.avatar;
@@ -61,8 +63,10 @@ const handleEditProfile = () => {
   togglePopupUser();
 };
 
-// второй попап пока вызывается автоматически при загрузке страницы
-togglePopupUser();
+const handleLogout = () => {
+  localStorage.removeItem(jwtLsName);
+  router.push('/sign-in');
+};
 </script>
 
 <template>
@@ -90,7 +94,9 @@ togglePopupUser();
         <span class="profile__activity-text">Онлайн</span>
       </div>
     </div>
+
     <p class="profile__status">{{ status }}</p>
+
     <MyCollapse v-model="profileCollapse">
       <template #header>
         <h4 class="profile__collapse-title">
@@ -108,9 +114,26 @@ togglePopupUser();
             <h5 class="profile__collapse-subtitle">{{ item.title }}</h5>
             <p class="profile__collapse-text">{{ item.text }}</p>
           </div>
+          <MyButton
+            type="button"
+            textButton="Edit"
+            class="profile__collapse-edit"
+            @click="togglePopupUser"
+          >
+            <template #icon>
+              <font-awesome-icon icon="fa-solid fa-pen" />
+            </template>
+          </MyButton>
         </div>
       </template>
     </MyCollapse>
+
+    <MyButton
+      type="button"
+      textButton="Выйти"
+      @click="handleLogout"
+      class="profile__logout"
+    />
   </div>
 
   <PopupWithForm
@@ -171,7 +194,7 @@ togglePopupUser();
         name="status"
         placeholder="Введите статус"
         :minLength="2"
-        :maxLength="35"
+        :maxLength="30"
         :error="errorsUser.status"
       />
     </template>
