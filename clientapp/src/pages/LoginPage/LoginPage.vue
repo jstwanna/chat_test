@@ -31,7 +31,7 @@ const handleSubmit = async () => {
       if (error.status === 401) {
         addNotification(notifications, 'Проверьте данные', 'error');
       } else {
-        addNotification(notifications, 'Ошибка сервера!', 'error');
+        addNotification(notifications, 'Ошибка сервера', 'error');
       }
       console.error('Произошла ошибка входа', error.message);
     });

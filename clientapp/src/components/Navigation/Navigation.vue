@@ -33,6 +33,7 @@ const handleSwitchComponent = (tabTitle: string, component: Component) => {
               'navigation__link',
               { navigation__link_active: tabTitle === link.toolTip },
             ]"
+            ariaLabel="Навигационная кнопка"
             v-tooltip="{ text: link.toolTip, position: 'top' }"
             @click="handleSwitchComponent(link.toolTip, link.component)"
           >

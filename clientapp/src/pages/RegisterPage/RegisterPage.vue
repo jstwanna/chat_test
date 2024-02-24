@@ -18,7 +18,7 @@ const notifications = ref<Notification[]>([]);
 
 const auth = new AuthClient();
 
-const handleSubmit = (): void => {
+const handleSubmit = async () => {
   auth
     .registration({
       mail: values.email,
@@ -40,7 +40,7 @@ const handleSubmit = (): void => {
           'error'
         );
       } else {
-        addNotification(notifications, 'Ошибка сервера!', 'error');
+        addNotification(notifications, 'Ошибка сервера', 'error');
       }
       console.log('Произошла ошибка регистрации', error.response);
     });

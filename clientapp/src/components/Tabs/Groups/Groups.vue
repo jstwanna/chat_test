@@ -3,10 +3,10 @@ import './Groups.css';
 import '../../../directives/TooltipDirective/TooltipDirective.css';
 
 import { useFormAndValidation } from '../../../composables/useFormAndValidation';
+import { usePopupWithForm } from '../../../composables/usePopupWithForm';
 import { GroupChat } from '../../../models/models';
 
 import MyButton from '../../UI/MyButton/MyButton.vue';
-import MyPopup from '../../UI/MyPopup/MyPopup.vue';
 import MyInput from '../../UI/MyInput/MyInput.vue';
 import GroupPreview from './GroupPreview/GroupPreview.vue';
 import FilteredList from '../FilteredList/FilteredList.vue';
@@ -14,8 +14,9 @@ import FilteredList from '../FilteredList/FilteredList.vue';
 const { values, handleChange, errors, isValid, resetForm } =
   useFormAndValidation();
 
+const { isPopup, togglePopup } = usePopupWithForm(resetForm);
+
 const searchGroup = ref<string>('');
-const isPopup = ref<boolean>(false);
 
 const groups = ref<GroupChat[]>([
   {
@@ -26,10 +27,6 @@ const groups = ref<GroupChat[]>([
     lastMessageDate: 200,
   },
 ]);
-
-const togglePopup = (): void => {
-  isPopup.value = !isPopup.value;
-};
 
 const handleSubmit = (): void => {
   const newGroup: GroupChat = {
@@ -49,10 +46,6 @@ const filteredArray = computed(() => {
     return chat.title.toLowerCase().includes(searchGroup.value.toLowerCase());
   });
 });
-
-watch(isPopup, () => {
-  isPopup.value ? resetForm() : null;
-});
 </script>
 
 <template>
@@ -65,10 +58,10 @@ watch(isPopup, () => {
     <template #header>
       <MyButton
         type="button"
-        class="groups__icon"
         ariaLabel="Поиск группы"
         v-tooltip="{ text: 'Создать группу', position: 'bottom' }"
         @click="togglePopup"
+        class="groups"
       >
         <template #icon>
           <font-awesome-icon icon="fa-solid fa-user-group" />
@@ -80,43 +73,36 @@ watch(isPopup, () => {
     </template>
   </FilteredList>
 
-  <MyPopup
+  <PopupWithForm
     v-model="isPopup"
     title="Создать новую группу"
-    @closePopup="togglePopup"
-    class="groups"
+    name="create-group"
+    textButton="Создать группу"
+    :disabled="isValid"
+    :closePopup="togglePopup"
+    :onSubmit="handleSubmit"
   >
-    <template #body>
-      <form name="create-group" novalidate @submit.prevent="handleSubmit">
-        <MyInput
-          v-model="values.title"
-          :handleInput="handleChange"
-          type="text"
-          name="title"
-          placeholder="Введите название группы"
-          :minLength="3"
-          :maxLength="15"
-          :error="errors.title"
-        />
-        <MyInput
-          v-model="values.description"
-          :handleInput="handleChange"
-          type="text"
-          name="description"
-          placeholder="Введите описание"
-          :minLength="5"
-          :maxLength="40"
-          :error="errors.description"
-        />
-        <div class="groups__button-container">
-          <MyButton
-            type="submit"
-            textButton="Создать группу"
-            :disabled="!isValid"
-            class="groups__button"
-          />
-        </div>
-      </form>
+    <template #form>
+      <MyInput
+        v-model="values.title"
+        :handleInput="handleChange"
+        type="text"
+        name="title"
+        placeholder="Введите название группы"
+        :minLength="3"
+        :maxLength="25"
+        :error="errors.title"
+      />
+      <MyInput
+        v-model="values.description"
+        :handleInput="handleChange"
+        type="text"
+        name="description"
+        placeholder="Введите описание"
+        :minLength="5"
+        :maxLength="40"
+        :error="errors.description"
+      />
     </template>
-  </MyPopup>
+  </PopupWithForm>
 </template>

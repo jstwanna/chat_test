@@ -7,7 +7,6 @@ import Navigation from '../../components/Navigation/Navigation.vue';
 import Profile from '../../components/Tabs/Profile/Profile.vue';
 import Chats from '../../components/Tabs/Chats/Chats.vue';
 import Groups from '../../components/Tabs/Groups/Groups.vue';
-import Settings from '../../components/Tabs/Settings/Settings.vue';
 import Tabs from '../../components/Tabs/Tabs.vue';
 
 const currentTitle = ref<string>('Чаты');
@@ -31,12 +30,6 @@ const links = shallowRef<Tab[]>([
     icon: 'fa-user-group',
     component: Groups,
     toolTip: 'Группы',
-  },
-  {
-    id: 4,
-    icon: 'fa-gear',
-    component: Settings,
-    toolTip: 'Настройки',
   },
 ]);
 

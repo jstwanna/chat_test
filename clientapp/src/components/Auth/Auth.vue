@@ -12,7 +12,7 @@ interface Props {
   text: string;
   to: string;
   textLink: string;
-  onSubmit: (event: Event) => void;
+  onSubmit: () => Promise<void>;
 }
 
 defineProps<Props>();

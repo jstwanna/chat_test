@@ -8,6 +8,7 @@ import {
   faChevronDown,
   faMagnifyingGlass,
   faXmark,
+  faPen,
 } from '@fortawesome/free-solid-svg-icons';
 
 library.add(
@@ -18,5 +19,6 @@ library.add(
   faCircleDot,
   faChevronDown,
   faMagnifyingGlass,
-  faXmark
+  faXmark,
+  faPen
 );

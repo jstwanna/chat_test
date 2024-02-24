@@ -1,23 +1,8 @@
-.groups__icon {
+.groups {
   position: absolute;
   top: 1.35rem;
   right: 1.5rem;
   font-size: 1.125rem;
   color: hsl(225, 30%, 73%);
   background-color: transparent;
-}
-
-.groups__button-container {
-  display: flex;
-  justify-content: center;
-  padding: 1rem 1rem 1.5rem;
-  margin-top: 0.5rem;
-}
-
-.groups__button {
-  padding: 0.5rem 1rem;
-}
-
-.groups__button:hover {
-  opacity: 0.8;
 }

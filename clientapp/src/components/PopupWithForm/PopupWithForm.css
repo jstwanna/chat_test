@@ -1,0 +1,14 @@
+.popup-form__footer {
+  display: flex;
+  justify-content: center;
+  padding: 1rem 1rem 1.5rem;
+  margin-top: 0.5rem;
+}
+
+.popup-form__button {
+  padding: 0.5rem 1rem;
+}
+
+.popup-form__button:hover {
+  opacity: 0.8;
+}
