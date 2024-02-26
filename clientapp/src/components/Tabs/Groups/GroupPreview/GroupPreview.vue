@@ -8,7 +8,7 @@ defineProps<{ groups: GroupChat }>();
 </script>
 
 <template>
-  <Preview :to="`/group/:${groups.id}`" class="group-preview">
+  <Preview :to="`/group/${groups.id}`" class="group-preview">
     <template #preview>
       <img
         :src="groups.imageUrl"

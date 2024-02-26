@@ -9,7 +9,7 @@ defineProps<{ chats: P2PChat }>();
 </script>
 
 <template>
-  <Preview :to="`/chat/:${chats.person.id}`" class="chat-preview">
+  <Preview :to="`/chat/${chats.person.id}`" class="chat-preview">
     <template #preview>
       <div class="chat-preview__image-container">
         <template v-if="chats.person.imageUrl">

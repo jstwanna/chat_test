@@ -6,6 +6,9 @@ import LoginPage from '../pages/LoginPage/LoginPage.vue';
 import RegisterPage from '../pages/RegisterPage/RegisterPage.vue';
 import HomePage from '../pages/HomePage/HomePage.vue';
 
+import ChatWindow from '../components/ChatWindow/ChatWindow.vue';
+import GroupWindow from '../components/GroupWindow/GroupWindow.vue';
+
 const routes = [
   {
     name: 'Login',
@@ -24,6 +27,18 @@ const routes = [
     meta: {
       requiredAuth: true,
     },
+    children: [
+      {
+        name: 'ChatWindow',
+        path: 'chat/:id',
+        component: ChatWindow,
+      },
+      {
+        name: 'GroupWindow',
+        path: 'group/:id',
+        component: GroupWindow,
+      },
+    ],
   },
   {
     path: '/:catchAll(.*)',

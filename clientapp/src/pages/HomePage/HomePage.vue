@@ -43,5 +43,6 @@ const onSwitch = (tabTitle: string, component: Component): void => {
   <main class="home">
     <Navigation :links="links" :tabTitle="currentTitle" :onSwitch="onSwitch" />
     <Tabs :currentTitle="currentTitle" :currentComponent="currentComponent" />
+    <RouterView />
   </main>
 </template>
