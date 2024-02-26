@@ -4,9 +4,9 @@ import './RegisterPage.css';
 import router from '../../router/router';
 
 import { useFormAndValidation } from '../../composables/useFormAndValidation';
-import { addNotification } from '../../utils/utils';
-import { Notification } from '../../models/models';
+import { handleApiError } from '../../utils/errorService';
 import { AuthClient, ApiException, jwtLsName } from '../../api/api-generated';
+import { REGISTER_ERROR_MESSAGE } from '../../utils/constants';
 
 import Auth from '../../components/Auth/Auth.vue';
 import MyInput from '../../components/UI/MyInput/MyInput.vue';
@@ -14,18 +14,24 @@ import MyNotification from '../../components/UI/MyNotification/MyNotification.vu
 
 const { values, handleChange, errors, isValid } = useFormAndValidation();
 
-const notifications = ref<Notification[]>([]);
-
 const auth = new AuthClient();
 
+let abort = new AbortController();
+
 const handleSubmit = async () => {
+  abort.abort();
+  abort = new AbortController();
+
   auth
-    .registration({
-      mail: values.email,
-      password: values.password,
-      name: values.name,
-      surname: values.surName,
-    })
+    .registration(
+      {
+        mail: values.email,
+        password: values.password,
+        name: values.name,
+        surname: values.surName,
+      },
+      abort.signal
+    )
     .then((res) => {
       if (res) {
         localStorage.setItem(jwtLsName, res);
@@ -33,16 +39,8 @@ const handleSubmit = async () => {
       }
     })
     .catch((error: ApiException) => {
-      if (error.status === 400) {
-        addNotification(
-          notifications,
-          'Такой пользователь уже существует',
-          'error'
-        );
-      } else {
-        addNotification(notifications, 'Ошибка сервера', 'error');
-      }
-      console.log('Произошла ошибка регистрации', error.response);
+      handleApiError(error, 'error');
+      console.error(REGISTER_ERROR_MESSAGE, error.message);
     });
 };
 </script>
@@ -102,5 +100,5 @@ const handleSubmit = async () => {
     </template>
   </Auth>
 
-  <MyNotification :notifications="notifications" />
+  <MyNotification />
 </template>

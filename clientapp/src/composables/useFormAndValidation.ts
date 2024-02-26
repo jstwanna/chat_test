@@ -1,3 +1,5 @@
+import { EMAIL_REGEX, INVALID_EMAIL_MESSAGE } from '../utils/constants';
+
 type FormFields = Record<string, string>;
 
 interface FormAndValidation {
@@ -19,6 +21,12 @@ export const useFormAndValidation = (): FormAndValidation => {
     values[name] = value;
     errors[name] = target.validationMessage;
     isValid.value = (target.closest('form') as HTMLFormElement).checkValidity();
+
+    if (name === 'email') {
+      if (!EMAIL_REGEX.test(value)) {
+        errors[name] = INVALID_EMAIL_MESSAGE;
+      }
+    }
   };
 
   const resetForm = () => {

@@ -16,7 +16,7 @@
   background-color: hsl(346, 84%, 61%);
 }
 
-.notification__box_type_confirm {
+.notification__box_type_success {
   background-color: hsl(164, 95%, 43%);
 }
 
@@ -26,6 +26,6 @@
 }
 .slide-fade-enter,
 .slide-fade-leave-to {
-  transform: translateX(-100%);
+  transform: translateX(100%);
   opacity: 0;
 }

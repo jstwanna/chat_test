@@ -1,9 +1,7 @@
 <script setup lang="ts">
 import './MyNotification.css';
 
-import { Notification } from '../../../models/models.ts';
-
-defineProps<{ notifications: Notification[] }>();
+import { notifications } from '../../../utils/errorService';
 </script>
 
 <template>

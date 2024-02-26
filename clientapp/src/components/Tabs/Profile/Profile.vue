@@ -12,8 +12,13 @@ import MyButton from '../../UI/MyButton/MyButton.vue';
 import PopupWithForm from '../../PopupWithForm/PopupWithForm.vue';
 import MyInput from '../../UI/MyInput/MyInput.vue';
 
-const { values, handleChange, errors, isValid, resetForm } =
-  useFormAndValidation();
+const {
+  values: valuesAvatar,
+  handleChange: handleChangeAvatar,
+  errors: errorsAvatar,
+  isValid: isValidAvatar,
+  resetForm: resetFormAvatar,
+} = useFormAndValidation();
 const {
   values: valuesUser,
   handleChange: handleChangeUser,
@@ -22,7 +27,8 @@ const {
   resetForm: resetFormUser,
 } = useFormAndValidation();
 
-const { isPopup, togglePopup } = usePopupWithForm(resetForm);
+const { isPopup: isPopupAvatar, togglePopup: togglePopupAvatar } =
+  usePopupWithForm(resetFormAvatar);
 const { isPopup: isPopupUser, togglePopup: togglePopupUser } =
   usePopupWithForm(resetFormUser);
 
@@ -52,8 +58,8 @@ const avatar = ref<string>(
 const status = ref<string>('1234567890123@5678901234567890');
 
 const handleUpdateAvatar = () => {
-  avatar.value = values.avatar;
-  togglePopup();
+  avatar.value = valuesAvatar.avatar;
+  togglePopupAvatar();
 };
 
 const handleEditProfile = () => {
@@ -78,7 +84,7 @@ const handleLogout = () => {
           type="button"
           ariaLabel="Обновление аватара"
           class="profile__edit-button"
-          @click="togglePopup"
+          @click="togglePopupAvatar"
         >
           <template #icon>
             <font-awesome-icon icon="fa-solid fa-pen" />
@@ -137,22 +143,22 @@ const handleLogout = () => {
   </div>
 
   <PopupWithForm
-    v-model="isPopup"
+    v-model="isPopupAvatar"
     title="Обновление аватара"
     name="update-avatar"
     textButton="Сохранить"
-    :disabled="isValid"
-    :closePopup="togglePopup"
+    :disabled="isValidAvatar"
+    :closePopup="togglePopupAvatar"
     :onSubmit="handleUpdateAvatar"
   >
     <template #form>
       <MyInput
-        v-model="values.avatar"
-        :handleInput="handleChange"
+        v-model="valuesAvatar.avatar"
+        :handleInput="handleChangeAvatar"
         type="url"
         name="avatar"
         placeholder="Введите ссылку"
-        :error="errors.avatar"
+        :error="errorsAvatar.avatar"
       />
     </template>
   </PopupWithForm>

@@ -7,6 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ChatWindow: typeof import('./src/components/ChatWindow/ChatWindow.vue')['default']
+    GroupWindow: typeof import('./src/components/GroupWindow/GroupWindow.vue')['default']
     MyNotification: typeof import('./src/components/UI/MyNotification/MyNotification.vue')['default']
     PopupWithForm: typeof import('./src/components/PopupWithForm/PopupWithForm.vue')['default']
     Preview: typeof import('./src/components/Tabs/Preview/Preview.vue')['default']
