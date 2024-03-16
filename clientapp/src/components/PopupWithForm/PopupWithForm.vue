@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './PopupWithForm.css';
+import './PopupWithForm.scss';
 
 import MyPopup from '../UI/MyPopup/MyPopup.vue';
 import MyButton from '../UI/MyButton/MyButton.vue';

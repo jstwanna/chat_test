@@ -1,0 +1,53 @@
+.auth {
+  display: flex;
+  flex-direction: column;
+  max-width: 24.75rem;
+  width: $full-dimension;
+  margin: auto;
+
+  &__logo {
+    display: block;
+    object-fit: cover;
+    height: $extra-large-dimension;
+    width: $extra-large-dimension;
+    margin: $no-margin auto;
+  }
+
+  &__title {
+    color: $primary-color;
+    font-size: $large-font-size;
+    font-weight: $font-weight-bold;
+    margin: 2.5rem $no-margin;
+    text-align: center;
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: $standard-padding;
+  }
+
+  &__button {
+    margin-top: 11.3125rem;
+
+    &:hover {
+      opacity: $darker-opacity;
+    }
+  }
+
+  &__text {
+    color: $secondary-color;
+    margin: $no-margin;
+    text-align: center;
+  }
+
+  &__link {
+    color: $accent-color;
+    @include transition(0.35s, linear);
+    text-decoration: none;
+
+    &:hover {
+      opacity: $light-opacity;
+    }
+  }
+}

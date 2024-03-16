@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import './MyNotification.css';
+import './MyNotification.scss';
 
 import { notifications } from '../../../utils/errorService';
 </script>
 
 <template>
   <div class="notification">
-    <transition-group name="slide-fade">
+    <TransitionGroup name="slide-fade">
       <div
         v-for="notification in notifications"
         :key="notification.id"
@@ -14,6 +14,6 @@ import { notifications } from '../../../utils/errorService';
       >
         {{ notification.message }}
       </div>
-    </transition-group>
+    </TransitionGroup>
   </div>
 </template>

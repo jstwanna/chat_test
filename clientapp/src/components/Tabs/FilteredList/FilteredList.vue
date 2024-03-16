@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './FilteredList.css';
+import './FilteredList.scss';
 
 import MyInput from '../../UI/MyInput/MyInput.vue';
 

@@ -1,0 +1,67 @@
+.popup {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: $full-dimension;
+  height: $full-dimension;
+  background-color: $obsidian-color;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__content {
+    background-color: $extra-dark-color;
+    max-width: 26.875rem;
+    width: $full-dimension;
+    border-radius: 0.625rem;
+    box-shadow: 0 0 1.5625rem $coffee-color;
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: $standard-padding;
+    border-bottom: $thin-border solid $dark-color-light;
+  }
+
+  &__title {
+    color: $primary-color;
+    font-size: $standard-font-size;
+    font-weight: $font-weight-bold;
+    margin: $no-margin;
+  }
+
+  &__close {
+    height: $extra-tiny-dimension;
+    width: $extra-tiny-dimension;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: transparent;
+    padding: $small-padding;
+    color: $secondary-color;
+
+    &:hover {
+      opacity: $darker-opacity;
+    }
+  }
+
+  &__body {
+    display: flex;
+    flex-direction: column;
+    padding: $large-padding $large-padding $no-padding;
+  }
+}
+
+.popup-enter-active,
+.popup-leave-active {
+  @include transition(0.5s, ease);
+}
+
+.popup-enter-from,
+.popup-leave-to {
+  @include transition(0.5s, ease);
+  opacity: $no-opacity;
+}

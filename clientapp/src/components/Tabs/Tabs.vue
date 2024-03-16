@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './Tabs.css';
+import './Tabs.scss';
 
 interface Props {
   currentComponent: Component;

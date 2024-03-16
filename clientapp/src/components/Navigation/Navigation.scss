@@ -1,0 +1,49 @@
+.navigation {
+  background-color: hsl(210, 16%, 25%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: $standard-padding 0.85rem;
+
+  &__logo {
+    display: block;
+    object-fit: cover;
+    height: $small-dimension;
+    width: $small-dimension;
+  }
+
+  &__links {
+    padding: $no-padding;
+    margin: $no-margin;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  &__link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-decoration: none;
+    font-size: $large-font-size;
+    color: $secondary-color;
+    background-color: transparent;
+    height: $large-dimension;
+    width: $large-dimension;
+    border-radius: 0.5rem;
+
+    &_active {
+      background-color: $dark-color;
+      color: $accent-color;
+    }
+  }
+
+  &__image-profile {
+    height: $medium-dimension;
+    width: $medium-dimension;
+    border-radius: $circle-border-radius;
+  }
+}

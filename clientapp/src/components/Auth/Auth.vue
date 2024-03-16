@@ -1,8 +1,9 @@
 <script setup lang="ts">
-import './Auth.css';
+import './Auth.scss';
 import logo from '../../images/logo.svg';
 
 import MyButton from '../UI/MyButton/MyButton.vue';
+import MyNotification from '../UI/MyNotification/MyNotification.vue';
 
 interface Props {
   title: string;
@@ -38,4 +39,6 @@ defineProps<Props>();
       </RouterLink>
     </p>
   </main>
+
+  <MyNotification />
 </template>

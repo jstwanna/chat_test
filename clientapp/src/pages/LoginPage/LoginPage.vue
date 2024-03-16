@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './LoginPage.css';
+import './LoginPage.scss';
 
 import router from '../../router/router';
 
@@ -10,7 +10,6 @@ import { LOGIN_ERROR_MESSAGE } from '../../utils/constants';
 
 import Auth from '../../components/Auth/Auth.vue';
 import MyInput from '../../components/UI/MyInput/MyInput.vue';
-import MyNotification from '../../components/UI/MyNotification/MyNotification.vue';
 
 const { values, handleChange, errors, isValid } = useFormAndValidation();
 
@@ -70,6 +69,4 @@ const handleSubmit = async () => {
       />
     </template>
   </Auth>
-
-  <MyNotification />
 </template>

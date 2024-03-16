@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './Chats.css';
+import './Chats.scss';
 
 import { P2PChat } from '../../../models/models';
 

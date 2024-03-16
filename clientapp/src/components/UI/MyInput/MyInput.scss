@@ -1,0 +1,62 @@
+.input-block {
+  display: flex;
+  flex-direction: column;
+
+  &__container {
+    display: flex;
+    align-items: center;
+    color: $secondary-color;
+    background-color: $dark-color-light;
+    border: $thin-border solid $dark-color-light;
+    box-sizing: border-box;
+    border-radius: $border-radius-tight;
+    @include transition(0.35s, linear);
+
+    &_type {
+      &_error {
+        border-color: $red-color;
+      }
+
+      &_active {
+        border-color: $secondary-color;
+      }
+    }
+  }
+
+  &__icon {
+    font-size: $extra-standard-font-size;
+    padding-left: $standard-padding;
+  }
+
+  &__input {
+    font-size: $small-font-size;
+    border: $no-border;
+    padding: $no-padding;
+    outline: $no-outline;
+    line-height: 1.6875rem;
+    color: $secondary-color;
+    background-color: $dark-color-light;
+    border-radius: $border-radius-tight;
+    padding: $small-padding $standard-padding;
+    width: $full-dimension;
+
+    &_type {
+      &_error {
+        color: $red-color;
+      }
+    }
+
+    &::placeholder {
+      color: $secondary-color;
+    }
+  }
+
+  &__error {
+    color: $red-color;
+    font-size: $extra-small-font-size;
+    font-weight: $font-weight-bold;
+    margin: 0.3125rem $no-margin;
+    line-height: normal;
+    min-height: 1.875rem;
+  }
+}

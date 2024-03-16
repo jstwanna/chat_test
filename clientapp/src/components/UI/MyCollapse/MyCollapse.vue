@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './MyCollapse.css';
+import './MyCollapse.scss';
 
 import MyButton from '../MyButton/MyButton.vue';
 

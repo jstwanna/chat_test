@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './MyButton.css';
+import './MyButton.scss';
 
 const emit = defineEmits(['click']);
 

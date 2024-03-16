@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './HomePage.css';
+import './HomePage.scss';
 
 import { Tab } from '../../models/models';
 

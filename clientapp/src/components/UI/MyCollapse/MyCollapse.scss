@@ -1,0 +1,50 @@
+.collapse {
+  display: flex;
+  flex-direction: column;
+
+  &__button {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $dark-color-light;
+    color: $primary-color;
+    border-radius: $rounded-border-radius;
+    padding: 0.75rem $extra-standard-padding;
+    font-size: $small-font-size;
+    box-sizing: border-box;
+    @include transition(0.35s, linear);
+
+    &_active {
+      border-bottom-left-radius: $no-border-radius;
+      border-bottom-right-radius: $no-border-radius;
+    }
+
+    &:hover {
+      opacity: $darker-opacity;
+    }
+  }
+
+  &__body {
+    border: $thin-border solid $dark-color-light;
+    padding: 1.25rem;
+  }
+
+  &__icon {
+    font-size: $extra-small-font-size;
+    @include transition(0.4s, ease-out);
+
+    &_active {
+      transform: rotate(180deg);
+    }
+  }
+}
+
+.collapse-enter-active {
+  @include transition(0.4s, ease-out);
+}
+
+.collapse-leave-to,
+.collapse-enter-from {
+  @include transition(0.4s, ease-out);
+  opacity: $no-opacity;
+}

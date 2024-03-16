@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './GroupPreview.css';
+import './GroupPreview.scss';
 
 import { GroupChat } from '../../../../models/models';
 import Preview from '../../Preview/Preview.vue';

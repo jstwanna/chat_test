@@ -1,4 +1,5 @@
-import './index.css';
+import './scss/index.scss';
+
 import './utils/icons';
 
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';

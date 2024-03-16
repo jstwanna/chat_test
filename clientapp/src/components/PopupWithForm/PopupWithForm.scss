@@ -1,0 +1,16 @@
+.popup-form {
+  &__footer {
+    display: flex;
+    justify-content: center;
+    padding: $standard-padding $standard-padding $large-padding;
+    margin-top: $small-margin;
+  }
+
+  &__button {
+    padding: $small-padding $standard-padding;
+
+    &:hover {
+      opacity: $light-opacity;
+    }
+  }
+}

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import './Navigation.css';
-import '../../directives/TooltipDirective/TooltipDirective.css';
+import './Navigation.scss';
+import '../../directives/TooltipDirective/TooltipDirective.scss';
 import logo from '../../images/logo.svg';
 import avatar from '../../images/avatar-1.jpg';
 

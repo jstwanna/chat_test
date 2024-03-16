@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './Profile.css';
+import './Profile.scss';
 
 import { jwtLsName } from '../../../api/api-generated';
 import { user } from '../../../auth/auth';

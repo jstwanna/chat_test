@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './RegisterPage.css';
+import './RegisterPage.scss';
 
 import router from '../../router/router';
 
@@ -10,7 +10,6 @@ import { REGISTER_ERROR_MESSAGE } from '../../utils/constants';
 
 import Auth from '../../components/Auth/Auth.vue';
 import MyInput from '../../components/UI/MyInput/MyInput.vue';
-import MyNotification from '../../components/UI/MyNotification/MyNotification.vue';
 
 const { values, handleChange, errors, isValid } = useFormAndValidation();
 
@@ -99,6 +98,4 @@ const handleSubmit = async () => {
       />
     </template>
   </Auth>
-
-  <MyNotification />
 </template>

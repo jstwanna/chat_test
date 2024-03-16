@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './ChatWindow.css';
+import './ChatWindow.scss';
 </script>
 
 <template>

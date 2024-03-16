@@ -1,0 +1,17 @@
+.tabs {
+  position: relative;
+  max-width: 23.75rem;
+  width: $full-dimension;
+  background-color: $extra-dark-color;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+
+  &__title {
+    font-size: 1.3125rem;
+    font-weight: $font-weight-bold;
+    margin: $no-margin $large-margin;
+    color: $primary-color;
+    padding-top: $large-padding;
+  }
+}

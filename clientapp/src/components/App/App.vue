@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './App.css';
+import './App.scss';
 
 // import { HubConnectionBuilder, HubConnectionState } from '@microsoft/signalr';
 

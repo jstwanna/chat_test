@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './Preview.css';
+import './Preview.scss';
 
 defineProps<{ to: string }>();
 </script>

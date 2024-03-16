@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import './Groups.css';
-import '../../../directives/TooltipDirective/TooltipDirective.css';
+import './Groups.scss';
+import '../../../directives/TooltipDirective/TooltipDirective.scss';
 
 import { useFormAndValidation } from '../../../composables/useFormAndValidation';
 import { usePopupWithForm } from '../../../composables/usePopupWithForm';
@@ -8,6 +8,7 @@ import { GroupChat } from '../../../models/models';
 
 import MyButton from '../../UI/MyButton/MyButton.vue';
 import MyInput from '../../UI/MyInput/MyInput.vue';
+import PopupWithForm from '../../PopupWithForm/PopupWithForm.vue';
 import GroupPreview from './GroupPreview/GroupPreview.vue';
 import FilteredList from '../FilteredList/FilteredList.vue';
 

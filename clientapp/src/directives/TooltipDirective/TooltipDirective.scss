@@ -1,0 +1,97 @@
+.tooltip {
+  position: relative;
+
+  &::before {
+    content: attr(data-tooltip);
+    opacity: $no-opacity;
+    position: absolute;
+    @include transition(0.4s, ease);
+    color: $extra-dark-color;
+    text-align: center;
+    padding: 0.3125rem;
+    min-width: 4rem;
+    background: $primary-color-light;
+    pointer-events: none;
+    z-index: 1;
+    font-size: $extra-small-font-size;
+    border-radius: $rounded-border-radius;
+    white-space: nowrap;
+  }
+
+  &::after {
+    @include transition(0.4s, ease);
+    opacity: $no-opacity;
+    content: '';
+    border-width: 0.3125rem;
+    border-style: solid;
+    border-color: $primary-color-light transparent transparent transparent;
+    position: absolute;
+    z-index: 1;
+    pointer-events: none;
+  }
+
+  &:hover::before,
+  &:hover::after,
+  &:focus::before,
+  &:focus::after {
+    opacity: 1;
+  }
+
+  &_position {
+    &_top {
+      &::before {
+        inset-block-end: 120%;
+        inset-inline-start: $standard-inset-inline-start;
+        margin-inline-start: -2.3rem;
+      }
+
+      &::after {
+        inset-block-start: -20%;
+        inset-inline-start: small-inset-inline-start;
+        border-color: $primary-color-light transparent transparent transparent;
+      }
+    }
+
+    &_bottom {
+      &::before {
+        inset-block-start: 120%;
+        inset-inline-start: $standard-inset-inline-start;
+        margin-inline-start: -2.7rem;
+      }
+
+      &::after {
+        inset-block-end: -20%;
+        inset-inline-start: small-inset-inline-start;
+        border-color: transparent transparent $primary-color-light transparent;
+      }
+    }
+
+    &_left {
+      &::before {
+        inset-block-end: $small-inset-block-end;
+        inset-inline-end: 120%;
+        min-height: $full-dimension;
+      }
+
+      &::after {
+        inset-block-start: 25%;
+        inset-inline-start: -20%;
+        border-color: transparent transparent transparent $primary-color-light;
+      }
+    }
+
+    &_right {
+      &::before {
+        inset-block-end: $small-inset-block-end;
+        inset-inline-start: 120%;
+        min-height: $full-dimension;
+      }
+
+      &::after {
+        inset-block-start: 25%;
+        inset-inline-end: -20%;
+        border-color: transparent $primary-color-light transparent transparent;
+      }
+    }
+  }
+}

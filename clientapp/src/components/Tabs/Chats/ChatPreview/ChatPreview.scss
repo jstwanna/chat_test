@@ -1,0 +1,82 @@
+.chat-preview {
+  &__image-container {
+    position: relative;
+  }
+
+  &__image,
+  &__no-image {
+    display: block;
+    border-radius: $circle-border-radius;
+    height: $extra-medium-dimension;
+    width: $full-dimension;
+  }
+
+  &__image {
+    object-fit: cover;
+  }
+
+  &__no-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: $no-margin;
+    background-color: $accent-color-light;
+    color: $accent-color;
+  }
+
+  &__activity {
+    background-color: $green-color;
+    height: $tiny-dimension;
+    width: $tiny-dimension;
+    border-radius: $circle-border-radius;
+    position: absolute;
+    bottom: 0.15rem;
+    right: 0.0625rem;
+    border: 0.125rem solid $dark-grey-color;
+    box-sizing: border-box;
+  }
+
+  &__info {
+    line-height: $standard-line-height;
+    font-size: $small-font-size;
+  }
+
+  &__name,
+  &__last-message {
+    max-width: $max-width-extra-large;
+    margin: $no-margin;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  &__name {
+    font-weight: $font-weight-normal;
+    margin-bottom: $extra-small-margin;
+    color: $primary-color;
+    font-size: $standard-font-size;
+  }
+
+  &__last-message {
+    color: $secondary-color;
+  }
+
+  &__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: $tiny-font-size;
+    width: $full-dimension;
+  }
+
+  &__time {
+    color: $secondary-color;
+    margin: $no-margin;
+  }
+
+  &__miss-message {
+    color: $accent-red-color;
+    margin-top: $small-margin;
+  }
+}

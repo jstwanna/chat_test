@@ -1,0 +1,20 @@
+.preview {
+  display: grid;
+  grid-template-columns: $grid-sidebar-width 1fr $grid-sidebar-width;
+  gap: 1.25rem;
+  padding: 0.9375rem $extra-standard-padding;
+  outline: $no-outline;
+  @include transition(0.35s, linear);
+  border-radius: $rounded-border-radius;
+  text-decoration: none;
+  border: $thin-border solid $extra-dark-color;
+
+  &:focus {
+    border-color: $secondary-color;
+  }
+
+  &_active,
+  &:hover {
+    background-color: $dark-color-light;
+  }
+}

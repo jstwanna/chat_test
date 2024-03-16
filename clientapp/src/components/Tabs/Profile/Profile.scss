@@ -1,0 +1,143 @@
+.profile {
+  padding: $large-padding $large-padding $no-padding;
+  box-sizing: border-box;
+
+  &__user-info {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border-bottom: $thin-border solid $dark-color-light;
+    padding-bottom: $large-padding;
+    margin: $no-margin $no-margin $large-margin;
+  }
+
+  &__image-container {
+    position: relative;
+    margin-bottom: $large-margin;
+    height: $super-large-dimension;
+    width: $super-large-dimension;
+  }
+
+  &__edit-button {
+    position: absolute;
+    right: $no-right-distance;
+    bottom: 0;
+    padding: $small-padding;
+    height: $extra-small-dimension;
+    width: $extra-small-dimension;
+    font-size: $small-font-size;
+    border-radius: $circle-border-radius;
+    background-color: $dark-color-light;
+    border: $thin-border solid transparent;
+
+    &:hover {
+      opacity: $light-opacity;
+    }
+  }
+
+  &__avatar {
+    display: block;
+    object-fit: cover;
+    border-radius: $circle-border-radius;
+    height: $super-large-dimension;
+    width: $super-large-dimension;
+  }
+
+  &__name {
+    max-width: 20.5rem;
+    font-size: 1.25rem;
+    font-weight: $font-weight-normal;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    margin: $no-margin $no-margin $extra-small-margin;
+    color: $primary-color;
+  }
+
+  &__activity {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+  }
+
+  &__circle {
+    height: $tiny-dimension;
+    width: $tiny-dimension;
+    color: $green-color-light;
+  }
+
+  &__activity-text {
+    color: $blue-color;
+  }
+
+  &__status {
+    color: $blue-color;
+    margin-bottom: $large-margin;
+    text-align: center;
+  }
+
+  &__collapse-content {
+    position: relative;
+  }
+
+  &__collapse-edit {
+    position: absolute;
+    top: -0.35rem;
+    right: $no-right-distance;
+    font-size: 0.8125rem;
+    font-weight: $font-weight-bold;
+    height: fit-content;
+    background-color: $dark-color-light;
+    padding: 0.25rem $small-padding;
+    border-radius: $rounded-border-radius;
+    border: $thin-border solid transparent;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+
+  &__collapse-edit:hover {
+    opacity: $darker-opacity;
+  }
+
+  &__collapse-title {
+    font-weight: $font-weight-bold;
+    margin: $no-margin;
+  }
+
+  &__collapse-subtitle {
+    margin: $no-margin $no-margin $extra-small-margin;
+    color: $blue-color;
+    font-size: 0.9375rem;
+    font-weight: $font-weight-normal;
+  }
+
+  &__collapse-text {
+    margin: $no-margin;
+    color: $primary-color;
+    font-size: $small-font-size;
+  }
+
+  &__collapse-body {
+    margin-bottom: $large-margin;
+  }
+
+  &__collapse-body:last-child {
+    margin: $no-margin;
+  }
+
+  &__logout {
+    position: absolute;
+    background-color: transparent;
+    color: $accent-red-color;
+    font-size: $extra-standard-font-size;
+    font-weight: $font-weight-bold;
+    bottom: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+
+    &:hover {
+      opacity: $light-opacity;
+    }
+  }
+}

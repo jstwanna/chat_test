@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import './MyInput.css';
+import './MyInput.scss';
 
 const emit = defineEmits(['update:modelValue']);
 
@@ -60,7 +60,10 @@ const computedValue = computed({
         required
         @focus="inputFocus = true"
         @blur="inputFocus = false"
-        :class="['input-block__input']"
+        :class="[
+          'input-block__input',
+          { 'input-block__input_type_error': error },
+        ]"
       />
     </div>
     <p v-if="error !== null" class="input-block__error">
